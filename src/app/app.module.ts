@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 
 import { AuthService } from "./services/auth-service.service";
-
+import { AuthGuard } from "./guards/auth.guard"
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +27,7 @@ import { AuthService } from "./services/auth-service.service";
     CalendarModule.forRoot(),
     routing
   ],
-  providers: [ AppSettings,AuthService ],
+  providers: [ AppSettings,AuthService,AuthGuard ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
