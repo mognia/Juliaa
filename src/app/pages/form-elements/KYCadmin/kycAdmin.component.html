@@ -17,18 +17,18 @@
 
                         </div>
                         <div class="card-body widget-body">
-
+                            <form [formGroup]="AdminKyc" (ngSubmit)="onSubmit(form.value)">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label style="padding-right:12px" for="inputFirstName">First Name</label>
                                         <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputFirstName" placeholder="First Name">
                                         <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Fradio" class="custom-control-input radio-danger" id="radioDanger">
+                                            <input type="radio" name="Fradio" formControlName="NotVerifyFirstName"  class="custom-control-input radio-danger" id="radioDanger">
                                             <label class="custom-control-label" for="radioDanger">Incorrect</label>
                                         </div>
                                         <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Fradio" class="custom-control-input radio-success" id="FNradioSuccess">
+                                            <input type="radio" name="Fradio" formControlName="NotVerifyFirstName"[(ngModel)]="verifyFirstName" class="custom-control-input radio-success" id="FNradioSuccess">
                                             <label class="custom-control-label" for="FNradioSuccess">Correct</label>
                                         </div>
                                     </div>
@@ -38,12 +38,12 @@
                                         <label style="padding-right:12px" for="inputLastName">Last Name</label>
                                         <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputLastName" placeholder="Last Name">
                                         <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="radio" class="custom-control-input radio-danger" id="LNradioDanger">
-                                            <label class="custom-control-label" for="LNradioDanger">Correct</label>
+                                            <input [(ngModel)]="NotVerifyLastName" type="radio" name="radio" class="custom-control-input radio-danger" id="LNradioDanger">
+                                            <label class="custom-control-label" for="LNradioDanger">Incorrect</label>
                                         </div>
                                         <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
                                             <input type="radio" name="radio" class="custom-control-input radio-success" id="radioSuccess">
-                                            <label class="custom-control-label" for="radioSuccess">Incorrect</label>
+                                            <label [(ngModel)]="verifyLastName" class="custom-control-label" for="radioSuccess">Correct</label>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                             <div class="row justify-content-center">
                                 <button type="submit" class="btn btn-secondary">Submit</button>
                             </div>
-
+                        </form>
                         </div>
                     </div>
                 </div>

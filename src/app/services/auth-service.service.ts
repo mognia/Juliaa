@@ -34,6 +34,24 @@ export class AuthService {
     return this.http.post('http://localhost:3000/users/forgotpassword', email, {headers: headers})
       .map(res => res.json());
   }
+  updatekyc(form){
+
+    
+    let headers = new Headers();
+    // headers.append('Content-Type', 'multipart/form-data');
+    let body = new FormData();
+    body.append('email', form.email);
+    body.append('firstName', form.firstname);
+    body.append('lastName', form.lastname);
+    body.append('birthDate', form.birth);
+    body.append('telephone', form.phone);
+    body.append('walletAddress', form.wallet);
+    body.append('address', form.address);
+    body.append('passportImage', form.image);
+
+    return this.http.post('http://localhost:3000/users/updatekyc', body, {headers: headers})
+      .map(res => res.json());
+  }
   getProfile() {
     let headers = new Headers();
     this.loadToken();

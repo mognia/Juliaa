@@ -1,7 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
-
+import { AuthService } from "../../../services/auth-service.service";
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-kycUser',
   templateUrl: './kycUser.component.html',
@@ -16,16 +18,25 @@ export class KycUserComponent {
     public details:any = {};
     public showConfirm:boolean;
     public confirmed:boolean;
+    public photo:any;
+    public router: Router;
 
-    constructor(private formBuilder: FormBuilder) { 
+    image(event){
+        const file = event.target.files[0]
+        this.details.image = file;
+        const reader = new FileReader();
+        reader.onload = () => {
+            this.photo = reader.result;
+        }
+        reader.readAsDataURL(file);  
+    }
+    constructor(router:Router,private authService:AuthService,private formBuilder: FormBuilder,private flashMessage: FlashMessagesService) { 
 
-        let password = new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)]));
-        let confirmPassword = new FormControl('', Validators.compose([Validators.required, CustomValidators.equalTo(password)]));  
 
         this.steps = [
         //   {name: 'Account Information', icon: 'fa-lock', active: true, valid: false, hasError:false },
-          {name: 'Personal Information', icon: 'fa-user', active: true, valid: true, hasError:false },
-          {name: 'Payment Information', icon: 'fa-credit-card', active: false, valid: true, hasError:false },
+          {name: 'Personal Information', icon: 'fa-user', active: false, valid: true, hasError:false },
+          {name: 'Payment Information', icon: 'fa-credit-card', active: true, valid: false, hasError:false },
           {name: 'Confirm Your Details', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
         ]
 
@@ -88,6 +99,8 @@ export class KycUserComponent {
                     }
                     if(step.name=='Payment Information'){
                         if (paymentForm.valid) {
+                            console.log(paymentForm.value.image);
+                            
                             step.active = false;
                             step.valid = true;
                             steps[index+1].active=true;
@@ -102,13 +115,14 @@ export class KycUserComponent {
         });
 
 
-        this.details.fullname = this.personalForm.value.firstname + " " + this.personalForm.value.lastname;
+        this.details.firstname = this.personalForm.value.firstname ;
+        this.details.lastname = this.personalForm.value.lastname;
         this.details.birth = this.personalForm.value.birth;
         this.details.email = this.personalForm.value.email;
         this.details.phone = this.personalForm.value.phone;
         this.details.wallet = this.personalForm.value.wallet;
         this.details.address = this.paymentForm.value.address;
-        this.details.image = this.paymentForm.value.image;
+        // this.details.image = this.paymentForm.value.image;
 
     }
 
@@ -129,9 +143,17 @@ export class KycUserComponent {
     public confirm(){
         this.steps.forEach( step => step.valid = true );
         this.confirmed = true;
-    }
+        this.authService.updatekyc(this.details).subscribe(data => {
+            if(data.success) {
+              this.flashMessage.show('You are now registered and can now login', {cssClass: 'alert-success', timeout: 3000});
+              this.router.navigate(['/login']);
+            } else {
+              this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+              this.router.navigate(['/register']);
+            }
+          });
 
- 
+    }
 
  
 
