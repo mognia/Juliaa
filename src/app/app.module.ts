@@ -12,13 +12,19 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 
 import { AuthService } from "./services/auth-service.service";
-import { AuthGuard } from "./guards/auth.guard"
+import { AuthGuard } from "./guards/auth.guard";
+import { HttpModule } from '@angular/http';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+
+
   ],
   imports: [
+    HttpModule,
+    FlashMessagesModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({

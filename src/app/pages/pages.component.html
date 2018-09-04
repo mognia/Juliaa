@@ -7,7 +7,7 @@
         <app-sidebar *ngIf="settings.theme.menu == 'vertical'"></app-sidebar> 
         <div class="main-content"> 
             <app-side-chat></app-side-chat>           
-            <app-breadcrumb></app-breadcrumb>            
+            <!-- <app-breadcrumb></app-breadcrumb>             -->
             <router-outlet></router-outlet>              
         </div>
     </div>   
@@ -15,7 +15,7 @@
 </div>
 <app-footer></app-footer>
 <app-back-top position="200"></app-back-top>
-
+<!-- 
 <div class="settings" [ngClass]="{'show': showSetting}">
     <button class="btn btn-default toggle" (click)="showSetting=!showSetting"><i class="fa fa-spin fa-gear"></i></button>
     <div class="card">
@@ -71,4 +71,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

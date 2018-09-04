@@ -23,7 +23,6 @@ export class RegisterComponent {
                  private flashMessage: FlashMessagesService){
         this.router = router;
         this.form = fb.group({
-            name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             email: ['', Validators.compose([Validators.required, emailValidator])],
             password: ['', Validators.required],
             confirmPassword: ['', Validators.required]

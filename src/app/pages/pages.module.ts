@@ -33,6 +33,8 @@ import { SearchComponent } from './search/search.component';
 import { KycAdminComponent } from './kyc-admin/kyc-admin.component';
 
 
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -62,7 +64,9 @@ import { KycAdminComponent } from './kyc-admin/kyc-admin.component';
     FavoritesComponent,
     BlankComponent,
     SearchComponent,
-    KycAdminComponent
+    KycAdminComponent,
+    
+
   ],
   providers:[
     {

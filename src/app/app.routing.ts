@@ -8,6 +8,7 @@ export const routes: Routes = [
   { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },
   { path: 'login', loadChildren: 'app/pages/login/login.module#LoginModule' },
   { path: 'register', loadChildren: 'app/pages/register/register.module#RegisterModule' },
+  { path:'forgetPass', loadChildren:'app/pages/forget-pass/forget-pass.module#ForgetPassModule'},
   { path: '**', component: NotFoundComponent }
 ];
 
