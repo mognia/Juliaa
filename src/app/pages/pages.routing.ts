@@ -6,6 +6,8 @@ import { BlankComponent } from './blank/blank.component';
 import { SearchComponent } from './search/search.component';
 import { AdminUserListComponent } from './admin-user-list/admin-user-list.component';
 import { ReferalComponent } from './referal/referal.component';
+import { ResetPassComponent } from './reset-pass/reset-pass.component';
+
 export const routes: Routes = [
     {
         path: '', 
@@ -18,7 +20,8 @@ export const routes: Routes = [
             { path: 'form-elements', loadChildren: 'app/pages/form-elements/form-elements.module#FormElementsModule', data: { breadcrumb: 'Form Elements' } },
             { path: 'package', loadChildren: 'app/pages/package/package.module#PackageModule', data: { breadcrumb: 'Packages' } },
             { path: 'userList', component:AdminUserListComponent, data: { breadcrumb: 'Users List' } },
-            { path: 'referal', component:ReferalComponent, data: { breadcrumb: 'Referals' } },             
+            { path: 'referal', component:ReferalComponent, data: { breadcrumb: 'Referals' } },
+            { path: 'resetPass', component:ResetPassComponent, data: { breadcrumb: 'Reset Password' } },             
             { path: 'ticketing', loadChildren: 'app/pages/ticketing/ticketing.module#TicketingModule', data: { breadcrumb: 'Ticketing' } },
             { path: 'tables', loadChildren: 'app/pages/tables/tables.module#TablesModule', data: { breadcrumb: 'Tables' } },
             { path: 'tools', loadChildren: 'app/pages/tools/tools.module#ToolsModule', data: { breadcrumb: 'Tools' } },

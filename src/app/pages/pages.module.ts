@@ -35,6 +35,7 @@ import { AdminUserListComponent } from './admin-user-list/admin-user-list.compon
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ReferalComponent } from './referal/referal.component';
+import { ResetPassComponent } from './reset-pass/reset-pass.component';
 
 
 
@@ -73,6 +74,7 @@ import { ReferalComponent } from './referal/referal.component';
     KycAdminComponent,
     AdminUserListComponent,
     ReferalComponent,
+    ResetPassComponent,
     
 
   ],

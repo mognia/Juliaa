@@ -86,35 +86,16 @@
                 <div class="line"></div>
             </span>
 
-            <div class="ml-2 mr-2 d-none d-sm-block">
-                 <a id="info-content-icon" data-toggle="collapse" href="#info-content" (click)="showInfoContent = !showInfoContent" class="d-flex" [class.show]="showInfoContent">
-                    <div [@showInfo]="showInfoContent" class="triangle"></div>
-                </a>
-            </div>
 
-            <form class="app-search d-none d-md-inline-block ml-3">
-                <i class="fa fa-search"></i>
-                <input type="text" placeholder="Type to search..." class="form-control">
-            </form>
 
-            <app-favorites class="d-none d-lg-inline-block"></app-favorites>
+
 
             <div class="top-rigth-icons ml-auto">
-                <span class="d-none d-sm-inline-block">
-                    <app-flags-menu></app-flags-menu>
-                </span> 
+
                 <span class="d-none d-sm-inline-block">
                     <app-fullscreen></app-fullscreen>
                 </span> 
-                <span class="d-none d-sm-inline-block">
-                    <app-applications></app-applications>                    
-                </span> 
-                <span class="d-none d-sm-inline-block">
-                    <app-messages></app-messages>
-                </span>               
-                <span class="d-none d-sm-inline-block pl-2 pr-2" (click)="settings.theme.showSideChat = !settings.theme.showSideChat">
-                    <i class="fa fa-commenting-o" aria-hidden="true"></i>
-                </span> 
+
                 <span class="d-none d-sm-inline-block">
                     <app-user-menu></app-user-menu>
                 </span> 

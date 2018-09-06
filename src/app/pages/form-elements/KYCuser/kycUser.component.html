@@ -120,7 +120,7 @@
                                         <i class="fa fa-envelope"></i>
                                     </span>
                                 </div>
-                                <input style="max-width:50%;" formControlName="email" class="form-control" [ngClass]="{'form-control-danger' : (step.hasError && personalForm.get('email').hasError('required')) || (step.hasError && personalForm.get('email').hasError('email')), 
+                                <input style="max-width:48%;" formControlName="email" class="form-control" [ngClass]="{'form-control-danger' : (step.hasError && personalForm.get('email').hasError('required')) || (step.hasError && personalForm.get('email').hasError('email')), 
                                                                                                 'form-control-success' :  !personalForm.get('email').hasError('required') && !personalForm.get('email').hasError('email')}"
                                     type="text">
                             </div>
@@ -136,7 +136,7 @@
                                         <i class="fa fa-phone"></i>
                                     </span>
                                 </div>
-                                <input style="max-width:50%;" formControlName="phone" class="form-control" [ngClass]="{'form-control-danger' :  personalForm.get('phone').hasError('required'), 'form-control-success' :  !personalForm.get('phone').hasError('required') }"
+                                <input style="max-width:48%;" formControlName="phone" class="form-control" [ngClass]="{'form-control-danger' :  personalForm.get('phone').hasError('required'), 'form-control-success' :  !personalForm.get('phone').hasError('required') }"
                                     type="number">
                             </div>
                             <small class="text-danger" *ngIf="step.hasError && personalForm.get('phone').hasError('required')">Phone is required</small>
