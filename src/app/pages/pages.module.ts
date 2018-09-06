@@ -31,12 +31,15 @@ import { FavoritesComponent } from '../theme/components/favorites/favorites.comp
 import { BlankComponent } from './blank/blank.component';
 import { SearchComponent } from './search/search.component';
 import { KycAdminComponent } from './kyc-admin/kyc-admin.component';
+import { AdminUserListComponent } from './admin-user-list/admin-user-list.component';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 
 @NgModule({
   imports: [
+    NgxDatatableModule,
     CommonModule,
     FormsModule,
     PerfectScrollbarModule,
@@ -65,6 +68,7 @@ import { KycAdminComponent } from './kyc-admin/kyc-admin.component';
     BlankComponent,
     SearchComponent,
     KycAdminComponent,
+    AdminUserListComponent,
     
 
   ],

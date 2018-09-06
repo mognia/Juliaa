@@ -92,7 +92,7 @@ export class DynamicMenuComponent implements OnInit {
   public onSubmit(menu:Object):void {
     if (this.form.valid) {
       let lastId = this.menuItems[this.menuItems.length-1].id;
-      let newMenuItem = new Menu(lastId+1, menu['title'], menu['routerLink'], menu['href'], menu['icon'], menu['target'], menu['hasSubMenu'], parseInt(menu['parentId']));
+      let newMenuItem = new Menu(lastId+1, menu['title'], menu['routerLink'], menu['href'], menu['icon'], menu['target'], menu['hasSubMenu'], parseInt(menu['parentId']), menu['guard']);
       this.menuService.addNewMenuItem(this.menuItems, newMenuItem, this.settings.theme.menu);      
       this.toastrService.success('New menu item successfully added !', menu['title'] );
       this.form.reset({

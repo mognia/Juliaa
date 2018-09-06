@@ -19,16 +19,65 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {     
-    if(sessionStorage["userMenuItems"]) {
-      let ids = JSON.parse(sessionStorage.getItem("userMenuItems"));
-      let newArr = [];
-      ids.forEach(id => {
-        let newMenuItem = this.menuItems.filter(mail => mail.id == id);
-        newArr.push(newMenuItem[0]);
-      });
-      this.menuItems = newArr; 
-    }
-  }
+    // if(sessionStorage["userMenuItems"]) {
+    //   let ids = JSON.parse(sessionStorage.getItem("userMenuItems"));
+    //   let newArr = [];
+    //   ids.forEach(id => {
+    //     let newMenuItem = this.menuItems.filter(mail => mail.id == id);
+    //     newArr.push(newMenuItem[0]);
+    //   });
+    //   this.menuItems = newArr; 
+    // }
+          // let ids = JSON.parse(sessionStorage.getItem("roles"));
+          let newArr = [];
+          // console.log(this.menuItems[0].guard);
+          //getting roles from local Storage
+          const roles = localStorage.getItem('roles');
+          //its saved as string so we parse it to json again
+          const role = JSON.parse(roles)
+          //here we extract the Role Title from role Object
+          const roleTitle = role[0].roleTitle
+          let isAdmin = this.IsAdmin(roleTitle);
+          let isUser = this.IsUser(roleTitle); 
+          if (isAdmin) {
+            console.log('aaaaaaaa');
+            
+            for (const item in this.menuItems) {
+              let newMenuItem = this.menuItems.filter(item => item.guard == 'admin'||item.guard == 'any')
+    
+            newArr.push(newMenuItem[0]);
+            this.menuItems = newMenuItem; 
+            }
+          }
+          else if (isUser) {
+            for (const item in this.menuItems) {
+              let newMenuItem = this.menuItems.filter(item => item.guard == 'user'||item.guard == 'any')
+    
+            newArr.push(newMenuItem[0]);
+            this.menuItems = newMenuItem; 
+            }
+                 
+          }
+  
+        }
+        IsAdmin(roleTitle) {
+        
+          let adminAccess = document.querySelector('#admin');
+          if (roleTitle == 'admin') {
+            return true
+          }
+          else {
+            return false
+          }
+        }
+        IsUser(roleTitle) {
+          if (roleTitle == 'user') {
+            return true
+          }
+          else {
+            return false
+          }
+        }
 
   public closeSubMenus(){
     let menu = document.querySelector("#menu0");

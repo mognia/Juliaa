@@ -15,10 +15,12 @@ import { AuthService } from "./services/auth-service.service";
 import { AuthGuard } from "./guards/auth.guard";
 import { HttpModule } from '@angular/http';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
+
 
 
   ],
