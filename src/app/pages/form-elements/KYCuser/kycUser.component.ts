@@ -35,8 +35,8 @@ export class KycUserComponent {
 
         this.steps = [
         //   {name: 'Account Information', icon: 'fa-lock', active: true, valid: false, hasError:false },
-          {name: 'Personal Information', icon: 'fa-user', active: false, valid: true, hasError:false },
-          {name: 'Payment Information', icon: 'fa-credit-card', active: true, valid: false, hasError:false },
+          {name: 'Personal Information', icon: 'fa-user', active: true, valid: false, hasError:false },
+          {name: 'Payment Information', icon: 'fa-credit-card', active: false, valid: false, hasError:false },
           {name: 'Confirm Your Details', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
         ]
 

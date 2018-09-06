@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewEncapsulation,ViewChild } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { AuthService } from "../../services/auth-service.service";
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 @Component({
   selector: 'app-admin-user-list',
   templateUrl: './admin-user-list.component.html',
@@ -7,42 +11,81 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
   encapsulation: ViewEncapsulation.None
 })
 export class AdminUserListComponent implements OnInit {
+  public router: Router;
   editing = {};
-  rows = [];
+  public form:FormGroup;
+  public user:AbstractControl;
+  public admin:AbstractControl;
+  public canChangeRoles:AbstractControl;
+  public canVerifyKYC:AbstractControl;
+  public email:AbstractControl;
+  // rows = [];
   temp = [];
   selected = [];
-  loadingIndicator: boolean = true;
+  loadingIndicator: boolean = false;
   reorderable: boolean = true;
+  rows:any = [];
+   roles;
+  columns = [
+    { prop: 'email' },
+    { name: 'roles' },
 
+  ];
   
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
-  columns = [
-    { prop: 'name' },
-    { name: 'Gender' },
-    { name: 'Company' }
-  ];
 
-  constructor() { 
-    this.fetch((data) => {
-      this.temp = [...data];
-      this.rows = data;
-      setTimeout(() => { this.loadingIndicator = false; }, 1500);
+
+  constructor(router:Router, private authService:AuthService,private flashMessage: FlashMessagesService,fb:FormBuilder,) { 
+    this.form = fb.group({
+      user: [true],
+      admin: [false],
+      canChangeRoles: [false],
+      canVerifyKYC:[false],
+      email:['']
+  });
+  this.user = this.form.controls['user'];
+  this.admin = this.form.controls['admin'];
+  this.canChangeRoles = this.form.controls['canChangeRoles'];
+  this.canVerifyKYC = this.form.controls['canVerifyKYC'];
+  this.email = this.form.controls['email'];
+    this.authService.getUserList().subscribe(data => {
+      
+      data.users.forEach(user => {
+        var roleStr = ""
+        user.roles.forEach(a => {
+          roleStr += a.roleTitle + " ,";
+          
+        });
+        user.roles = roleStr.slice(0,-2);
+      });
+      this.rows=data.users
+      
+
+
     });
   }
-  fetch(data) {
-    const req = new XMLHttpRequest();
-    req.open('GET', 'assets/data/company.json');
-    req.onload = () => {
-      data(JSON.parse(req.response));
-    };
-    req.send();
+  public onSubmit(values:Object):void {
+    values.email=this.selected[0].email;
+    console.log(values);
+    this.authService.changeRole(values).subscribe(data => {
+      console.log(data);
+      
+      if(data.success) {
+        this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
+        location.reload();
+      } else {
+        this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
+      }
+    });
+    
+    
   }
   
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.temp.filter(function(d) {
-      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.emial.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.rows = temp;
     this.table.offset = 0;
@@ -54,14 +97,12 @@ export class AdminUserListComponent implements OnInit {
   }
 
   onSelect({ selected }) {
+    this.selected=[]
     console.log('Select Event', selected, this.selected);
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
   }
 
-  onActivate(event) {
-    console.log('Activate Event', event);
-  }
 
   ngOnInit() {
   }

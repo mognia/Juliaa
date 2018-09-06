@@ -15,6 +15,7 @@ export class RegisterComponent {
     public name:AbstractControl;
     public email:AbstractControl;
     public password:AbstractControl;
+    public referal:AbstractControl;
     public confirmPassword:AbstractControl;
     
     constructor(router:Router,
@@ -25,13 +26,15 @@ export class RegisterComponent {
         this.form = fb.group({
             email: ['', Validators.compose([Validators.required, emailValidator])],
             password: ['', Validators.required],
-            confirmPassword: ['', Validators.required]
+            confirmPassword: ['', Validators.required],
+            referal: [''],
         },{validator: matchingPasswords('password', 'confirmPassword')});
 
 
         this.email = this.form.controls['email'];
         this.password = this.form.controls['password'];
         this.confirmPassword = this.form.controls['confirmPassword'];
+        this.referal = this.form.controls['referal'];
     }
 
      public onSubmit(values:Object):void {

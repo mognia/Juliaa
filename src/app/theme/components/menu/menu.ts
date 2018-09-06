@@ -30,6 +30,8 @@ export const verticalMenuItems = [
     new Menu (6, 'Packages', null, null, 'caret-right', null, true, 0,'user'),
     new Menu (7, 'LongTerm', '/pages/package/LongTerm', null, 'keyboard-o', null, false, 6,'user'),
     new Menu (8, 'ShortTerm', '/pages/package/ShortTerm', null, 'keyboard-o', null, false, 6,'user'),
+    new Menu (9, 'User List', '/pages/userList', null, 'caret-right', null, false, 0,'admin'),
+    new Menu (10, 'Referal', '/pages/referal', null, 'keyboard-o', null, false, 0,'user'),
     new Menu (30, 'NGX DataTable', '/pages/tables/dynamic-tables/ngx', null, 'caret-right', null, false, 28,'admin'), 
     // new Menu (31, 'Tools', null, null, 'wrench', null, true, 0),
     // new Menu (32, 'Drag & Drop', '/pages/tools/drag-drop', null, 'hand-paper-o', null, false, 31), 

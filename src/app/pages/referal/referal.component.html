@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-12 mb-4">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-header transparent border-0 text-muted">
+               <h5>This Is your Referal Code:</h5> <h5 class="mb-0">{{UerId}}</h5>
+      
+            </div>
+            <div class="card-body pt-0 widget-body">
+                <p *ngIf="!hasReferal" class="text-left fs-13 text-gray">Sorry You Have no Referal User Yet</p>
+                <div *ngIf="hasReferal" class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let email of arr">
+                                <td>{{email}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

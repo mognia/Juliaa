@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -32,8 +32,9 @@ import { BlankComponent } from './blank/blank.component';
 import { SearchComponent } from './search/search.component';
 import { KycAdminComponent } from './kyc-admin/kyc-admin.component';
 import { AdminUserListComponent } from './admin-user-list/admin-user-list.component';
-
+import { FlashMessagesModule } from 'angular2-flash-messages';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ReferalComponent } from './referal/referal.component';
 
 
 
@@ -42,7 +43,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     NgxDatatableModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     PerfectScrollbarModule,
+    FlashMessagesModule.forRoot(),
     ToastrModule.forRoot(), 
     NgbModule.forRoot(),
     MultiselectDropdownModule,
@@ -69,6 +72,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     SearchComponent,
     KycAdminComponent,
     AdminUserListComponent,
+    ReferalComponent,
     
 
   ],
