@@ -66,7 +66,7 @@ export class AdminUserListComponent implements OnInit {
     });
   }
   public onSubmit(values:Object):void {
-    values.email=this.selected[0].email;
+    values["email"] =this.selected[0].email;
     console.log(values);
     this.authService.changeRole(values).subscribe(data => {
       console.log(data);

@@ -23,12 +23,21 @@ export class KycUserComponent {
 
     image(event){
         const file = event.target.files[0]
-        this.details.image = file;
-        const reader = new FileReader();
-        reader.onload = () => {
-            this.photo = reader.result;
+        console.log(file);
+        if (file.type = 'image/png') {
+            console.log('pngggg');
+            
+            this.details.image = file;
+            const reader = new FileReader();
+            reader.onload = () => {
+                this.photo = reader.result;
+            }
+            reader.readAsDataURL(file);
         }
-        reader.readAsDataURL(file);  
+        else{
+            this.image = '';
+        }
+  
     }
     constructor(router:Router,private authService:AuthService,private formBuilder: FormBuilder,private flashMessage: FlashMessagesService) { 
 
@@ -60,7 +69,7 @@ export class KycUserComponent {
 
         this.paymentForm = this.formBuilder.group({
             'address': ['', Validators.required],
-            'image': [''],
+            'image': ['']
         });        
     }
 
@@ -145,16 +154,52 @@ export class KycUserComponent {
         this.confirmed = true;
         this.authService.updatekyc(this.details).subscribe(data => {
             if(data.success) {
-              this.flashMessage.show('You are now registered and can now login', {cssClass: 'alert-success', timeout: 3000});
-              this.router.navigate(['/login']);
+              this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
+            //   this.router.navigate(['/login']);
             } else {
-              this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
-              this.router.navigate(['/register']);
+              this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
+            //   this.router.navigate(['/register']);
             }
           });
 
     }
 
- 
+    // var isAddress = function (address) {
+    //     if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+    //         // check if it has the basic requirements of an address
+    //         return false;
+    //     } else if (/^(0x)?[0-9a-f]{40}$/.test(address) || /^(0x)?[0-9A-F]{40}$/.test(address)) {
+    //         // If it's all small caps or all all caps, return true
+    //         return true;
+    //     } else {
+    //         // Otherwise check each case
+    //         return isChecksumAddress(address);
+    //     }
+    // };
+    var isChecksumAddress = function (address) {
+        // Check each case
+        address = address.replace('0x','');
+        var addressHash = sha3(address.toLowerCase());
+        for (var i = 0; i < 40; i++ ) {
+            // the nth letter should be uppercase if the nth digit of casemap is 1
+            if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
+                return false;
+            }
+        }
+        return true;
+    };
+
+    function isAddress(control: AbstractControl): { [key: string]: boolean } | null {
+        if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+            // check if it has the basic requirements of an address
+            return false;
+        } else if (/^(0x)?[0-9a-f]{40}$/.test(address) || /^(0x)?[0-9A-F]{40}$/.test(address)) {
+            // If it's all small caps or all all caps, return true
+            return true;
+        } else {
+            // Otherwise check each case
+            return isChecksumAddress(address);
+        }
+    }
 
 }

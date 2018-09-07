@@ -15,7 +15,8 @@ import { AuthService } from "./services/auth-service.service";
 import { AuthGuard } from "./guards/auth.guard";
 import { HttpModule } from '@angular/http';
 import { FlashMessagesModule } from 'angular2-flash-messages';
-
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 
   ],
   imports: [
+    MatButtonModule, MatCheckboxModule,MatExpansionModule,
     HttpModule,
     FlashMessagesModule.forRoot(),
     BrowserModule,

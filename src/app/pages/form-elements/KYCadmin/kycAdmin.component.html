@@ -1,357 +1,55 @@
-<div id="accordion">
-    <div class="card">
-        <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    simple@gamil.com
-                </button>
-            </h5>
-        </div>
-
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-            <div class="card-body">
-                <div class="col-lg-12 mb-4">
-                    <div widget class="card border-0 box-shadow">
-                        <div class="card-header transparent border-0 text-muted">
-                            <h5 class="mb-0">Block form</h5>
-
-                        </div>
-                        <div class="card-body widget-body">
-                            <form [formGroup]="AdminKyc" (ngSubmit)="onSubmit(form.value)">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputFirstName">First Name</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputFirstName" placeholder="First Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Fradio" formControlName="NotVerifyFirstName"  class="custom-control-input radio-danger" id="radioDanger">
-                                            <label class="custom-control-label" for="radioDanger">Incorrect</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Fradio" formControlName="NotVerifyFirstName"[(ngModel)]="verifyFirstName" class="custom-control-input radio-success" id="FNradioSuccess">
-                                            <label class="custom-control-label" for="FNradioSuccess">Correct</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputLastName">Last Name</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputLastName" placeholder="Last Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input [(ngModel)]="NotVerifyLastName" type="radio" name="radio" class="custom-control-input radio-danger" id="LNradioDanger">
-                                            <label class="custom-control-label" for="LNradioDanger">Incorrect</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="radio" class="custom-control-input radio-success" id="radioSuccess">
-                                            <label [(ngModel)]="verifyLastName" class="custom-control-label" for="radioSuccess">Correct</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputFirstName">Birth Date</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputFirstName" placeholder="First Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Birthradio" class="custom-control-input radio-danger" id="BDradioDanger">
-                                            <label class="custom-control-label" for="BDradioDanger">Incorrect</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Birthradio" class="custom-control-input radio-success" id="BDradioSuccess">
-                                            <label class="custom-control-label" for="BDradioSuccess">Correct</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputLastName">Email</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputLastName" placeholder="Email">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Mailradio" class="custom-control-input radio-danger" id="MailradioDanger">
-                                            <label class="custom-control-label" for="MailradioDanger">Correct</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Mailradio" class="custom-control-input radio-success" id="MailradioSuccess">
-                                            <label class="custom-control-label" for="MailradioSuccess">Incorrect</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputFirstName">Wallet Address</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputFirstName" placeholder="First Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Walletradio" class="custom-control-input radio-danger" id="WalletradioDanger">
-                                            <label class="custom-control-label" for="WalletradioDanger">Incorrect</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Walletradio" class="custom-control-input radio-success" id="WalletradioSuccess">
-                                            <label class="custom-control-label" for="WalletradioSuccess">Correct</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputLastName">User Address</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputLastName" placeholder="Last Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Addressradio" class="custom-control-input radio-danger" id="ADradioDanger">
-                                            <label class="custom-control-label" for="ADradioDanger">Correct</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Addressradio" class="custom-control-input radio-success" id="ADradioSuccess">
-                                            <label class="custom-control-label" for="ADradioSuccess">Incorrect</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <button type="submit" class="btn btn-secondary">Submit</button>
-                            </div>
-                        </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    simple@gamil.com
-                </button>
-            </h5>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-            <div class="card-body">
-                <div class="col-lg-12 mb-4">
-                    <div widget class="card border-0 box-shadow">
-                        <div class="card-header transparent border-0 text-muted">
-                            <h5 class="mb-0">Block form</h5>
-
-                        </div>
-                        <div class="card-body widget-body">
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputFirstName">First Name</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputFirstName" placeholder="First Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Fradio" class="custom-control-input radio-danger" id="radioDanger">
-                                            <label class="custom-control-label" for="radioDanger">Incorrect</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Fradio" class="custom-control-input radio-success" id="FNradioSuccess">
-                                            <label class="custom-control-label" for="FNradioSuccess">Correct</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputLastName">Last Name</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputLastName" placeholder="Last Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="radio" class="custom-control-input radio-danger" id="LNradioDanger">
-                                            <label class="custom-control-label" for="LNradioDanger">Correct</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="radio" class="custom-control-input radio-success" id="radioSuccess">
-                                            <label class="custom-control-label" for="radioSuccess">Incorrect</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputFirstName">Birth Date</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputFirstName" placeholder="First Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Birthradio" class="custom-control-input radio-danger" id="BDradioDanger">
-                                            <label class="custom-control-label" for="BDradioDanger">Incorrect</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Birthradio" class="custom-control-input radio-success" id="BDradioSuccess">
-                                            <label class="custom-control-label" for="BDradioSuccess">Correct</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputLastName">Email</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputLastName" placeholder="Email">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Mailradio" class="custom-control-input radio-danger" id="MailradioDanger">
-                                            <label class="custom-control-label" for="MailradioDanger">Correct</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Mailradio" class="custom-control-input radio-success" id="MailradioSuccess">
-                                            <label class="custom-control-label" for="MailradioSuccess">Incorrect</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputFirstName">Wallet Address</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputFirstName" placeholder="First Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Walletradio" class="custom-control-input radio-danger" id="WalletradioDanger">
-                                            <label class="custom-control-label" for="WalletradioDanger">Incorrect</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Walletradio" class="custom-control-input radio-success" id="WalletradioSuccess">
-                                            <label class="custom-control-label" for="WalletradioSuccess">Correct</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputLastName">User Address</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputLastName" placeholder="Last Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Addressradio" class="custom-control-input radio-danger" id="ADradioDanger">
-                                            <label class="custom-control-label" for="ADradioDanger">Correct</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Addressradio" class="custom-control-input radio-success" id="ADradioSuccess">
-                                            <label class="custom-control-label" for="ADradioSuccess">Incorrect</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <button type="submit" class="btn btn-secondary">Submit</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header" id="headingThree">
-            <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    simple@gamil.com
-                </button>
-            </h5>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-            <div class="card-body">
-                <div class="col-lg-12 mb-4">
-                    <div widget class="card border-0 box-shadow">
-                        <div class="card-header transparent border-0 text-muted">
-                            <h5 class="mb-0">Block form</h5>
-
-                        </div>
-                        <div class="card-body widget-body">
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputFirstName">First Name</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputFirstName" placeholder="First Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Fradio" class="custom-control-input radio-danger" id="radioDanger">
-                                            <label class="custom-control-label" for="radioDanger">Incorrect</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Fradio" class="custom-control-input radio-success" id="FNradioSuccess">
-                                            <label class="custom-control-label" for="FNradioSuccess">Correct</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputLastName">Last Name</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputLastName" placeholder="Last Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="radio" class="custom-control-input radio-danger" id="LNradioDanger">
-                                            <label class="custom-control-label" for="LNradioDanger">Correct</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="radio" class="custom-control-input radio-success" id="radioSuccess">
-                                            <label class="custom-control-label" for="radioSuccess">Incorrect</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputFirstName">Birth Date</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputFirstName" placeholder="First Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Birthradio" class="custom-control-input radio-danger" id="BDradioDanger">
-                                            <label class="custom-control-label" for="BDradioDanger">Incorrect</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Birthradio" class="custom-control-input radio-success" id="BDradioSuccess">
-                                            <label class="custom-control-label" for="BDradioSuccess">Correct</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputLastName">Email</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputLastName" placeholder="Email">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Mailradio" class="custom-control-input radio-danger" id="MailradioDanger">
-                                            <label class="custom-control-label" for="MailradioDanger">Correct</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Mailradio" class="custom-control-input radio-success" id="MailradioSuccess">
-                                            <label class="custom-control-label" for="MailradioSuccess">Incorrect</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputFirstName">Wallet Address</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputFirstName" placeholder="First Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Walletradio" class="custom-control-input radio-danger" id="WalletradioDanger">
-                                            <label class="custom-control-label" for="WalletradioDanger">Incorrect</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Walletradio" class="custom-control-input radio-success" id="WalletradioSuccess">
-                                            <label class="custom-control-label" for="WalletradioSuccess">Correct</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label style="padding-right:12px" for="inputLastName">User Address</label>
-                                        <input type="text" style="max-width:50%; display: inline-block;" class="form-control" id="inputLastName" placeholder="Last Name">
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Addressradio" class="custom-control-input radio-danger" id="ADradioDanger">
-                                            <label class="custom-control-label" for="ADradioDanger">Correct</label>
-                                        </div>
-                                        <div style="display:inline-block; margin-left:12px" class="custom-control custom-radio">
-                                            <input type="radio" name="Addressradio" class="custom-control-input radio-success" id="ADradioSuccess">
-                                            <label class="custom-control-label" for="ADradioSuccess">Incorrect</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <button type="submit" class="btn btn-secondary">Submit</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="title">
+    <p>Verify your users KYC</p>
 </div>
+<!-- <div>
+    <p>
+        here you can Verify or not your useres information</br>
+        by just clicking on correct or incorrect values you can accept or denied informations
+    </p>
+</div> -->
+<mat-accordion>
+
+    <mat-expansion-panel (click)="getmail(user.email)" (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngFor="let user of users">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{user.email}}
+            </mat-panel-title>
+            <mat-panel-description>
+
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form [formGroup]="form"  (ngSubmit)="onSubmit(form.value)"  class="text-left mt-4">
+
+            <div class="form-group">
+                <label class="label">First Name:</label>
+                    <p class="val">{{user.firstName}}</p>
+                    
+                    <mat-radio-group class="rad" formControlName="verifyFirstName">
+                            <mat-radio-button  [value]="true">Correct</mat-radio-button>
+                            <mat-radio-button  [value]="false">Incorrect</mat-radio-button>
+                          </mat-radio-group>
+            </div>
+            <div class="form-group">
+                    <label class="label">Last Name:</label>
+                        <p class="val">{{user.lastName}}</p>
+                        
+                        <mat-radio-group class="rad" formControlName="verifyLastName">
+                                <mat-radio-button  [value]="true">Correct</mat-radio-button>
+                                <mat-radio-button  [value]="false">Incorrect</mat-radio-button>
+                              </mat-radio-group>
+                </div>
+            <button  class="btn" type="submit">Submite</button>
+        </form>
+
+    </mat-expansion-panel>
+</mat-accordion>
+
+<nav style="margin-top: 2%" aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link">Previous</a></li>
+            <li class="page-item active"><a class="page-link" >1</a></li>
+            <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+            <li class="page-item"><a class="page-link" >Next</a></li>
+        </ul>
+    </nav>

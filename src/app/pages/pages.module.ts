@@ -37,10 +37,12 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ReferalComponent } from './referal/referal.component';
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
 
-
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   imports: [
+    MatButtonModule, MatCheckboxModule,MatExpansionModule,
     NgxDatatableModule,
     CommonModule,
     FormsModule,
