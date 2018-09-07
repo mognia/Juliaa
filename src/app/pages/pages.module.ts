@@ -40,6 +40,8 @@ import { ResetPassComponent } from './reset-pass/reset-pass.component';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+
 
 @NgModule({
   imports: [
@@ -78,7 +80,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     AdminUserListComponent,
     ReferalComponent,
     ResetPassComponent,
-    
+    UserDashboardComponent,
+
 
   ],
   providers:[

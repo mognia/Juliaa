@@ -125,7 +125,7 @@ export class AuthService {
   resetPasswor(form){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/resetpassword', form, { headers: headers })
+    return this.http.post('http://localhost:3000/users/changepassword', form, { headers: headers })
       .map(res => res.json());
   }
 

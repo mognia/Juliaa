@@ -209,13 +209,13 @@
 .login-container, .register-container, .error-container{
     .card{
         background-color: $login-window-bg-color;
-        color: $login-text-color;
+        color:#000;
         .card-header{
-            background-color: $login-header-bg-color;
+            background-color: #f2c900!important;
         }
         .btn{
-            background-color: $login-header-bg-color;
-            color: $login-text-color;
+            background-color: #f2c900!important;
+            color: #000;
         }
     }
 }

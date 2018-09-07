@@ -39,13 +39,13 @@ export class LoginComponent {
             if(data.success) {
               this.authService.storeUserData(data.token, data.user);
               this.flashMessage.show('You are now logged in', {cssClass: 'alert-success', timeout: 5000});
-              this.router.navigate(['pages/dashboard']);
+              this.router.navigate(['pages/']);
             } else {
               this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
               this.router.navigate(['login']);
             }
         });
-          this.router.navigate(['pages/dashboard']);
+          this.router.navigate(['pages/']);
       }
   }
 

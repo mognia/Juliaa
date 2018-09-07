@@ -6,7 +6,7 @@
                 <i class="fa fa-registered" aria-hidden="true"></i>
             </div>
             <div class="card-body text-center pb-1">
-                <h2 style="color:aliceblue;">Register member</h2>
+                <h2>Register member</h2>
                 <a routerLink="/login" class="transition">Already have an account? Sign in!</a>
 
                 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="text-left mt-4">
@@ -36,7 +36,7 @@
                             <input [formControl]="referal" class="form-control validation-field" placeholder="If You have Referal Code place here" type="text">  
                         </div>
                     <div class="form-group">
-                        <p style="color:aliceblue;" class="terms">By creating an account, you agree our <a class="transition terms" href="javascript:void(0);">Terms & Privacy Policy</a></p>                  
+                        <p class="terms">By creating an account, you agree our <a class="transition terms" href="javascript:void(0);">Terms & Privacy Policy</a></p>                  
                     </div>             
                     <div class="form-group">
                         <button [disabled]="!form.valid" class="btn btn-block" type="submit">Sign up</button>

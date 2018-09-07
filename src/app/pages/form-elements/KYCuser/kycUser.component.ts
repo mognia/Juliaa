@@ -4,6 +4,7 @@ import { CustomValidators } from 'ng2-validation';
 import { AuthService } from "../../../services/auth-service.service";
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
+import {MatDialog,MAT_DIALOG_DATA} from '@angular/material';
 @Component({
     selector: 'app-kycUser',
     templateUrl: './kycUser.component.html',
@@ -71,13 +72,12 @@ export class KycUserComponent {
     isInArray(array, word) {
         return array.indexOf(word.toLowerCase()) > -1;
     }
-    constructor(router: Router, private authService: AuthService, private formBuilder: FormBuilder, private flashMessage: FlashMessagesService) {
-
+    constructor(public dialog: MatDialog,router: Router, private authService: AuthService, private formBuilder: FormBuilder, private flashMessage: FlashMessagesService) {
 
         this.steps = [
             //   {name: 'Account Information', icon: 'fa-lock', active: true, valid: false, hasError:false },
-            { name: 'Personal Information', icon: 'fa-user', active: false, valid: true, hasError: false },
-            { name: 'Payment Information', icon: 'fa-credit-card', active: true, valid: false, hasError: false },
+            { name: 'Personal Information', icon: 'fa-user', active: true, valid: false, hasError: false },
+            { name: 'Payment Information', icon: 'fa-credit-card', active: false, valid: false, hasError: false },
             { name: 'Confirm Your Details', icon: 'fa-check-square-o', active: false, valid: false, hasError: false }
         ]
 

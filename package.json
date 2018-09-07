@@ -34,6 +34,7 @@
     "angular2-flash-messages": "^3.0.1",
     "angular2-jwt": "^0.2.3",
     "bootstrap": "4.1.2",
+    "chart.js": "^2.7.2",
     "classlist.js": "1.1.20150312",
     "core-js": "2.5.7",
     "d3": "5.5.0",

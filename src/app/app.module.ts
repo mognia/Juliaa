@@ -17,10 +17,12 @@ import { HttpModule } from '@angular/http';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
+    
 
 
 

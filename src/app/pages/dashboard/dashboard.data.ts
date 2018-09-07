@@ -205,15 +205,15 @@ export const refunds = [
 
 export const disk_space = [
   {
-    "name": "Disk C:",
+    "name": "Token 1:",
     "value": 178
   },
   {
-    "name": "Disk D:",
+    "name": "Token 2:",
     "value": 340
   },
   {
-    "name": "Disk E:",
+    "name": "Token 3:",
     "value": 280
   }
 ]

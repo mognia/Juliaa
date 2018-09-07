@@ -21,6 +21,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDialogModule} from '@angular/material/dialog';
 export const routes = [
   { path: '', redirectTo: 'UserKYC', pathMatch: 'full'},
   { path: 'controls', component: ControlsComponent, data: { breadcrumb: 'Form Controls' } },
@@ -33,7 +34,7 @@ export const routes = [
 
 @NgModule({
   imports: [
-    MatButtonModule, MatCheckboxModule,MatExpansionModule,MatFormFieldModule,MatRadioModule,MatInputModule,MatDatepickerModule,MatNativeDateModule,
+    MatButtonModule, MatCheckboxModule,MatExpansionModule,MatFormFieldModule,MatDialogModule,MatRadioModule,MatInputModule,MatDatepickerModule,MatNativeDateModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
