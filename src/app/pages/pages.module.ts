@@ -39,10 +39,11 @@ import { ResetPassComponent } from './reset-pass/reset-pass.component';
 
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   imports: [
-    MatButtonModule, MatCheckboxModule,MatExpansionModule,
+    MatButtonModule, MatCheckboxModule,MatExpansionModule,MatDatepickerModule,
     NgxDatatableModule,
     CommonModule,
     FormsModule,

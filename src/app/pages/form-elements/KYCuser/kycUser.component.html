@@ -1,11 +1,11 @@
-<h2>Form Wizard</h2>
-<p class="text-muted">If you want to be more selective about what fields appear on the form, you can use the Form Wizard instead.</p>
+<h2>Tell us more About Yourself!</h2>
+<p class="text-muted">you can send us your Information to compelete your Registration.</p>
 
 <div class="row">
     <div class="col">
         <div widget class="card border-0 box-shadow">
             <div class="card-header transparent border-0 text-muted">
-                <h5 class="mb-0">Form Wizard</h5>
+                <h5 class="mb-0">KYC form</h5>
                 <div class="widget-controls">
                     <a data-widgster="expand" href="#" class="transition">
                         <i class="fa fa-chevron-down"></i>
@@ -105,11 +105,7 @@
                             <small class="text-danger" *ngIf="step.hasError && personalForm.get('lastname').hasError('required')">Last Name is required</small>
                         </div>
 
-                        <div class="form-group col-md-12">
-                            <label for="input-12">Date</label>
-                            <input style="max-width:50%;" [ngClass]="{'form-control-danger' :  personalForm.get('birth').hasError('required'), 'form-control-success' :  !personalForm.get('birth').hasError('required') }"
-                                formControlName="birth" class="form-control" id="input-12" type="date" value="2011-08-19">
-                        </div>
+
 
                         <div class="form-group col-md-12" [ngClass]="{'has-danger' : (step.hasError && personalForm.get('email').hasError('required')) || (step.hasError && personalForm.get('email').hasError('email')), 
                                                                      'has-success' : !personalForm.get('email').hasError('required') && !personalForm.get('email').hasError('email')}">
@@ -148,7 +144,22 @@
                                 type="text">
                             <small class="text-danger" *ngIf="step.hasError && personalForm.get('wallet').hasError('required')">required</small>
                         </div>
-
+                        <div class="form-group col-md-12">
+                            <label style="margin-right:1%" for="input-12">Birth Date</label>
+                            <mat-form-field class="example-full-width">
+                                <input  formControlName="birth" matInput [min]="minDate" [max]="maxDate"  [errorStateMatcher]="matcher" [matDatepicker]="picker" placeholder="Select your Birth Date">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="dateFormControl.hasError('date')">
+                                    Birth Date is <strong>Not Valid</strong>
+                                  </mat-error>
+                                  <mat-error *ngIf="dateFormControl.hasError('required')">
+                                    Birth Date is <strong>required</strong>
+                                  </mat-error>
+                              </mat-form-field>
+                            <!-- <input style="max-width:50%;" [ngClass]="{'form-control-danger' :  personalForm.get('birth').hasError('required'), 'form-control-success' :  !personalForm.get('birth').hasError('required') }"
+                                formControlName="birth" class="form-control" id="input-12" type="date" value="2011-08-19"> -->
+                        </div>
                     </form>
 
                     <form *ngIf="step.name=='Payment Information'" [formGroup]="paymentForm" class="row bg-light pt-2">
@@ -157,13 +168,14 @@
                             <label class="form-control-label">Address</label>
                             <textarea [ngClass]="{'form-control-danger' :  paymentForm.get('address').hasError('required'), 'form-control-success' :  !paymentForm.get('address').hasError('required') }"
                                 formControlName="address" class="form-control"></textarea>
-                            <small class="text-danger" *ngIf="step.hasError && paymentForm.get('address').hasError('required')">required</small>
+                            <small class="text-danger" *ngIf="step.hasError && paymentForm.get('address').hasError('required')">Address Is required</small>
                         </div>
                         <div class="col-lg-4 mb-4">
                             <h6>Image upload</h6>
                             <!-- <input type="file"  (change)="image($event)" formControlName="image" > -->
-                            <app-image-uploader accept="image/jpg" (change)="image($event)" formControlName="image"></app-image-uploader>
-
+                            <app-image-uploader (change)="image($event)" formControlName="image"></app-image-uploader>
+                            <div class="err">{{fileExtensionMessage}}</div>
+                            <div *ngIf="step.hasError && paymentForm.get('image').hasError('required')" class="err">Passport Image Is required</div>
                         </div>
                     </form>
 

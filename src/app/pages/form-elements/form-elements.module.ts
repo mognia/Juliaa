@@ -16,10 +16,11 @@ import { ValidationsComponent } from './validations/validations.component';
 import { KycUserComponent } from './kycUser/kycUser.component';
 import { KycAdminComponent } from "./KYCadmin/kycAdmin.component";
 import { EditorComponent } from './editor/editor.component';
-import {MatButtonModule, MatCheckboxModule,MatFormFieldModule,} from '@angular/material';
+import {MatNativeDateModule,MatButtonModule, MatCheckboxModule,MatFormFieldModule,} from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 export const routes = [
   { path: '', redirectTo: 'UserKYC', pathMatch: 'full'},
   { path: 'controls', component: ControlsComponent, data: { breadcrumb: 'Form Controls' } },
@@ -32,7 +33,7 @@ export const routes = [
 
 @NgModule({
   imports: [
-    MatButtonModule, MatCheckboxModule,MatExpansionModule,MatFormFieldModule,MatRadioModule,MatInputModule,
+    MatButtonModule, MatCheckboxModule,MatExpansionModule,MatFormFieldModule,MatRadioModule,MatInputModule,MatDatepickerModule,MatNativeDateModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

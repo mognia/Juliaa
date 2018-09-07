@@ -10,6 +10,7 @@ export class ImageUploaderComponent {
     public image:any;
   
     fileChange(input){
+
         const reader = new FileReader();
         if (input.files.length) {
             const file = input.files[0];
