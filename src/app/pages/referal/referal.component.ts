@@ -12,7 +12,8 @@ export class ReferalComponent implements OnInit {
   public router: Router;
   UerId;
   hasReferal:boolean;
-  arr=[]
+  arr=[];
+  temp = [];
   constructor(router:Router,private authService:AuthService, private flashMessage: FlashMessagesService) {
 
  
@@ -27,7 +28,8 @@ export class ReferalComponent implements OnInit {
       console.log(data.referals);
 
       data.referals.forEach(user => {
-        this.arr.push(user.email)
+        this.arr.push(user.email);
+        this.temp.push(user.email)
         console.log(this.arr);
         
       });
@@ -38,6 +40,16 @@ export class ReferalComponent implements OnInit {
   ngOnInit() {
     const user = localStorage.getItem('user');
     this.UerId =JSON.parse(user).id
+  }
+
+  onSearchChange(searchValue : string){
+    let val = searchValue.toLowerCase();
+    const temp = this.temp.filter(function(d) {
+      return d.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+    this.arr = temp;
+    console.log(temp);
+    
   }
 
 }
