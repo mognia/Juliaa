@@ -57,9 +57,8 @@ export class KycUserComponent {
 
         if (file) {
             var reader = new FileReader();
-            reader.onloadend = (e: any) => {
-                var contents = e.target.result;
-                this.photoContent = contents;
+            reader.onload = () => {
+                this.photo = reader.result;
             }
             reader.readAsDataURL(file);
         } else {
@@ -73,7 +72,7 @@ export class KycUserComponent {
         return array.indexOf(word.toLowerCase()) > -1;
     }
     constructor(public dialog: MatDialog,router: Router, private authService: AuthService, private formBuilder: FormBuilder, private flashMessage: FlashMessagesService) {
-
+        this.router = router;
         this.steps = [
             //   {name: 'Account Information', icon: 'fa-lock', active: true, valid: false, hasError:false },
             { name: 'Personal Information', icon: 'fa-user', active: true, valid: false, hasError: false },
@@ -101,7 +100,7 @@ export class KycUserComponent {
 
         this.paymentForm = this.formBuilder.group({
             'address': ['', Validators.required],
-            'image': ['', Validators.required]
+            'image': ['']
         });
     }
 
@@ -196,6 +195,9 @@ export class KycUserComponent {
             }
         });
 
+    }
+    public home(){
+          this.router.navigate(['pages/dashboard']);
     }
 
 }
