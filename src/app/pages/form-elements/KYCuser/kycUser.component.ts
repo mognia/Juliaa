@@ -41,15 +41,12 @@ export class KycUserComponent {
         var allowedExtensions =
             ["jpg","png"];
         this.fileExtension = this.photoName.split('.').pop();
-
+        
         if (this.isInArray(allowedExtensions, this.fileExtension)) {
             this.fileExtensionError = false;
             this.fileExtensionMessage = ""
         } else if(file.size>1000000){
             this.fileExtensionMessage = "Only Less than 1MB photos Allowed"
-            this.fileExtensionError = true;
-        }else if (!file) {
-            this.fileExtensionMessage = "Passport image is requierd"
             this.fileExtensionError = true;
         }
         else {
@@ -111,11 +108,12 @@ export class KycUserComponent {
         let accountForm = this.accountForm;
         let personalForm = this.personalForm;
         let paymentForm = this.paymentForm;
-
+      
         if (this.steps[this.steps.length - 1].active)
             return false;
 
         this.steps.some(function (step, index, steps) {
+
             if (index < steps.length - 1) {
                 if (step.active) {
                     // if(step.name=='Account Information'){
@@ -135,6 +133,7 @@ export class KycUserComponent {
                             step.valid = true;
                             steps[index + 1].active = true;
                             return true;
+                            fileExtensionError = true;
                         }
                         else {
                             step.hasError = true;
@@ -144,7 +143,7 @@ export class KycUserComponent {
 
 
 
-                            if (paymentForm.value.image) {
+
                                 if (paymentForm.valid) {
                                     step.active = false;
                                     step.valid = true;
@@ -152,7 +151,7 @@ export class KycUserComponent {
                                     return true;
                                 }
                                 
-                            }
+                            
 
                             
 

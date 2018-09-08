@@ -174,7 +174,7 @@
                         <div class="col-lg-4 mb-4">
                             <h6>Image upload</h6>
                             <!-- <input type="file"  (change)="image($event)" formControlName="image" > -->
-                            <app-image-uploader (change)="image($event)" formControlName="image"></app-image-uploader>
+                            <app-image-uploader (change)="image($event)" formControlName="image" ></app-image-uploader>
                             <div class="err">{{fileExtensionMessage}}</div>
                             <div *ngIf="step.hasError && paymentForm.get('image').hasError('required')" class="err">Passport Image Is required</div>
                         </div>
@@ -225,7 +225,7 @@
                     <div class="col">
                         <button class="btn btn-primary pull-left" (click)="prev()">
                             <i class="fa fa-chevron-left arrow"></i>&nbsp; Prev Step</button>
-                        <button *ngIf="!steps[steps.length-1].active" class="btn btn-primary pull-right" (click)="next()">Next Step &nbsp;
+                        <button *ngIf="!steps[steps.length-1].active " [disabled]=" fileExtensionError" class="btn btn-primary pull-right" (click)="next()">Next Step &nbsp;
                             <i class="fa fa-chevron-right arrow"></i>
                         </button>
                         <button *ngIf="steps[steps.length-1].active" class="btn btn-primary pull-right" (click)="confirm()">Confirm &nbsp;
