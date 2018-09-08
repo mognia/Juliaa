@@ -18,65 +18,79 @@ export class KycUserComponent {
     public steps: any[];
     public accountForm: FormGroup;
     public personalForm: FormGroup;
-    public paymentForm: FormGroup;
+    public AddressForm: FormGroup;
     public details: any = {};
     public showConfirm: boolean;
     public confirmed: boolean;
     public photo: any;
     public router: Router;
+    haveImg:boolean=false;
     photoName: any;
     photoContent: any;
     fileExtension: any;
-    fileExtensionError: boolean = false;
+     fileExtensionError: boolean ;
+     validAddress:boolean =true;
     fileExtensionMessage: any;
     dateFormControl = new FormControl('', [
         Validators.required,
     ]);
     image(event) {
+        let fileType = event.target.files[0].type;
+        let fileSize = event.target.files[0].size;
 
-        var file = event.target.files[0];
-        this.photoName = file.name;
-        console.log(file.size);
-        
-        var allowedExtensions =
-            ["jpg","png"];
-        this.fileExtension = this.photoName.split('.').pop();
-        
-        if (this.isInArray(allowedExtensions, this.fileExtension)) {
+            console.log(fileType);
+            if (fileType == 'application/x-msdownload') {
+                this.fileExtensionError = true;
+                this.fileExtensionMessage='';
+                this.fileExtensionMessage='This is Not an Valid image please select .png or .jpg file';
+                
+            }
+
+        if (fileType !='image/png') {
+            if (fileType !='image/jpg') {
+                if (fileType != 'image/jpeg') {
+                    // document.getElementById('secondForm').reset();
+                    // document.getElementById('imginput').value =''
+                    this.fileExtensionError = true;
+                    this.fileExtensionMessage='';
+                    this.fileExtensionMessage='This is Not an Valid image please select .png or .jpg file';
+                    console.log(event.target.files[0]);
+                }
+
+
+            }
+
+        }if(fileSize > 1000000){
+            // document.getElementById('secondForm').reset();
+            // event.target.files[0]='';
+
+            this.fileExtensionError = true;
+            this.fileExtensionMessage='';
+            this.fileExtensionMessage='Maximum image size is : 1MB';
+        }
+        else{
+            console.log(event.target.files[0]);
             this.fileExtensionError = false;
-            this.fileExtensionMessage = ""
-        } else if(file.size>1000000){
-            this.fileExtensionMessage = "Only Less than 1MB photos Allowed"
-            this.fileExtensionError = true;
-        }
-        else {
-      
-            this.fileExtensionMessage = "Only .jpg photos allowed!!"
-            this.fileExtensionError = true;
-        }
-
-        if (file) {
-            var reader = new FileReader();
+            this.fileExtensionMessage='';
+            this.haveImg=true;
+            const reader = new FileReader();
+            const file = event.target.files[0];
             reader.onload = () => {
                 this.photo = reader.result;
             }
-            reader.readAsDataURL(file);
-        } else {
-            alert("Failed to load file");
+            reader.readAsDataURL(file);  
+
         }
-
-
+        
 
     }
-    isInArray(array, word) {
-        return array.indexOf(word.toLowerCase()) > -1;
-    }
-    constructor(public dialog: MatDialog,router: Router, private authService: AuthService, private formBuilder: FormBuilder, private flashMessage: FlashMessagesService) {
+
+    constructor( public dialog: MatDialog,router: Router, private authService: AuthService, private formBuilder: FormBuilder, private flashMessage: FlashMessagesService) {
         this.router = router;
         this.steps = [
             //   {name: 'Account Information', icon: 'fa-lock', active: true, valid: false, hasError:false },
             { name: 'Personal Information', icon: 'fa-user', active: true, valid: false, hasError: false },
-            { name: 'Payment Information', icon: 'fa-credit-card', active: false, valid: false, hasError: false },
+            { name: 'Address Information', icon: 'fa-credit-card', active: false, valid: false, hasError: false },
             { name: 'Confirm Your Details', icon: 'fa-check-square-o', active: false, valid: false, hasError: false }
         ]
 
@@ -94,26 +108,25 @@ export class KycUserComponent {
             'birth': ['', Validators.required],
             'email': ['', Validators.compose([Validators.required, CustomValidators.email])],
             'phone': ['', Validators.required],
-            'wallet': ['', Validators.required],
+            'wallet': ['',Validators.required],
 
         });
 
-        this.paymentForm = this.formBuilder.group({
+        this.AddressForm = this.formBuilder.group({
             'address': ['', Validators.required],
             'image': ['']
         });
     }
-
     public next() {
+        this.haveImg=false;
         let accountForm = this.accountForm;
         let personalForm = this.personalForm;
-        let paymentForm = this.paymentForm;
+        let AddressForm = this.AddressForm;
       
         if (this.steps[this.steps.length - 1].active)
             return false;
 
         this.steps.some(function (step, index, steps) {
-
             if (index < steps.length - 1) {
                 if (step.active) {
                     // if(step.name=='Account Information'){
@@ -133,18 +146,14 @@ export class KycUserComponent {
                             step.valid = true;
                             steps[index + 1].active = true;
                             return true;
-                            fileExtensionError = true;
                         }
                         else {
                             step.hasError = true;
                         }
                     }
-                    if (step.name == 'Payment Information') {
+                    if (step.name == 'Address Information') {
 
-
-
-
-                                if (paymentForm.valid) {
+                                if (AddressForm.valid) {
                                     step.active = false;
                                     step.valid = true;
                                     steps[index + 1].active = true;
@@ -171,8 +180,8 @@ export class KycUserComponent {
         this.details.email = this.personalForm.value.email;
         this.details.phone = this.personalForm.value.phone;
         this.details.wallet = this.personalForm.value.wallet;
-        this.details.address = this.paymentForm.value.address;
-        // this.details.image = this.paymentForm.value.image;
+        this.details.address = this.AddressForm.value.address;
+        // this.details.image = this.AddressForm.value.image;
 
     }
 
@@ -209,5 +218,27 @@ export class KycUserComponent {
     public home(){
           this.router.navigate(['pages/dashboard']);
     }
+
+    public isAddress(event){
+
+        if (!/^(0x)?[0-9a-f]{40}$/i.test(event)) {
+            document.getElementById('walletDiv').classList.add("has-danger");
+            document.getElementById('walletDiv').classList.remove("has-success");
+            // check if it has the basic requirements of an address
+            console.log('not Address');
+            this.haveImg=false;
+            return false;
+        } else if (/^(0x)?[0-9a-f]{40}$/.test(event) || /^(0x)?[0-9A-F]{40}$/.test(event)) {
+            document.getElementById('walletDiv').classList.remove("has-danger");
+            document.getElementById('walletDiv').classList.add("has-success");
+            // If it's all small caps or all all caps, return true
+            console.log('address');
+            this.haveImg=true;
+            return true;
+        } 
+        console.log(event);
+        
+    }
+
 
 }
