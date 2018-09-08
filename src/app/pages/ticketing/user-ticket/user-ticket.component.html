@@ -1,4 +1,70 @@
 <div widget class="card border-0 box-shadow">
+    <!-- Button trigger modal -->
+<button type="button" style="    width: 21%;
+margin: 2%;" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+        Send New Ticket
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"  id="exampleModalLabel">New Ticket</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                    <div class="card-body widget-body">
+
+                            <form class="form-horizontal">
+                                <div class="form-group row text-sm-right">
+                                    <label for="email-h-f" class="col-sm-3 form-control-label mt-1">Subject</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="email-h-t">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <label class="col-sm-2" style="    margin-left: 40px;" for="exampleSelect2">Token</label>
+                                        <select style="    display: inline-block;max-width: 74%;" class="form-control col-sm-9" id="exampleSelect2">
+                                            <option>Token#1</option>
+                                            <option>Token#2</option>
+                                            <option>Token#3</option>
+                                        </select>
+                                    </div>
+                                <div class="form-group">
+                                        <label class="col-sm-3" style=" text-align: center;
+                                        padding-left: 46px;" for="exampleSelect1">Priority</label>
+                                        <select style="      max-width: 73%;
+                                        margin-left: 7px;  display: inline-block;" class="form-control col-sm-9" id="exampleSelect1">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row text-sm-right">
+                                            <label for="email-h-f" class="col-sm-3 form-control-label mt-1">Descript</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="email-h-t">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                                <textarea class="form-control" id="textarea-1"></textarea>
+                                            </div>
+
+                            </form>
+                           
+                        </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success">Send Ticket</button>
+            </div>
+          </div>
+        </div>
+      </div>
   <div class="card-header transparent border-0 text-muted">
       <h5 class="mb-0">Your Supporting Tickets</h5>
        

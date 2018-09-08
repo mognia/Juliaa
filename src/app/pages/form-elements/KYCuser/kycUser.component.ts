@@ -39,7 +39,7 @@ export class KycUserComponent {
         console.log(file.size);
         
         var allowedExtensions =
-            ["jpg"];
+            ["jpg","png"];
         this.fileExtension = this.photoName.split('.').pop();
 
         if (this.isInArray(allowedExtensions, this.fileExtension)) {
