@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ViewEncapsulation ,OnInit} from '@angular/core';
+import { Router ,ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { AuthService } from "../../services/auth-service.service";
@@ -11,13 +11,14 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public router: Router;
   public form:FormGroup;
   public email:AbstractControl;
   public password:AbstractControl;
-
-  constructor(router:Router, 
+defmsg;
+paramMsg;
+  constructor(private activatedRoute: ActivatedRoute,router:Router, 
               fb:FormBuilder,
               private authService:AuthService,
               private flashMessage: FlashMessagesService) {
@@ -29,6 +30,24 @@ export class LoginComponent {
 
       this.email = this.form.controls['email'];
       this.password = this.form.controls['password'];
+  }
+  ngOnInit() {
+        // subscribe to router event
+        this.activatedRoute.queryParams.subscribe((params: Params) => {
+          if(params){
+            this.paramMsg = params['msg'];
+            console.log(params);
+            
+          }
+          else{
+            console.log('aaaaaaasds');
+            
+          }
+          // this.defmsg = params['msg'];
+          
+          // this.flashMessage.show( params['msg'], {cssClass: 'alert-success', timeout: 10000});
+        });
+    
   }
 
   public onSubmit(values:Object):void {

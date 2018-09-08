@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class ReferalComponent implements OnInit {
   public router: Router;
   UerId;
+  UserLink;
   hasReferal:boolean;
   arr=[];
   temp = [];
@@ -39,7 +40,8 @@ export class ReferalComponent implements OnInit {
 
   ngOnInit() {
     const user = localStorage.getItem('user');
-    this.UerId =JSON.parse(user).id
+    this.UerId =JSON.parse(user).id;
+    this.UserLink ="http://localhost:4200/#/register?referalCode="+ this.UerId;
   }
 
   onSearchChange(searchValue : string){

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router ,ActivatedRoute, Params} from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { AuthService } from "../../services/auth-service.service";
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -18,10 +18,12 @@ export class RegisterComponent {
     public referal:AbstractControl;
     public confirmPassword:AbstractControl;
     
-    constructor(router:Router,
+    constructor(private activatedRoute: ActivatedRoute,router:Router,
                  fb:FormBuilder,
                  private authService:AuthService,
                  private flashMessage: FlashMessagesService){
+                             // subscribe to router event
+
         this.router = router;
         this.form = fb.group({
             email: ['', Validators.compose([Validators.required, emailValidator])],
@@ -35,6 +37,13 @@ export class RegisterComponent {
         this.password = this.form.controls['password'];
         this.confirmPassword = this.form.controls['confirmPassword'];
         this.referal = this.form.controls['referal'];
+        this.activatedRoute.queryParams.subscribe((params: Params) => {
+            if(params){
+               let ref = params['referalCode']
+               this.referal.setValue(ref);
+  
+}
+});
     }
 
      public onSubmit(values:Object):void {

@@ -48,6 +48,9 @@ export class KycUserComponent {
         } else if(file.size>1000000){
             this.fileExtensionMessage = "Only Less than 1MB photos Allowed"
             this.fileExtensionError = true;
+        }else if (!file) {
+            this.fileExtensionMessage = "Passport image is requierd"
+            this.fileExtensionError = true;
         }
         else {
       
@@ -138,14 +141,22 @@ export class KycUserComponent {
                         }
                     }
                     if (step.name == 'Payment Information') {
-                        if (paymentForm.valid) {
-                            console.log(paymentForm.value.image);
 
-                            step.active = false;
-                            step.valid = true;
-                            steps[index + 1].active = true;
-                            return true;
-                        }
+
+
+                            if (paymentForm.value.image) {
+                                if (paymentForm.valid) {
+                                    step.active = false;
+                                    step.valid = true;
+                                    steps[index + 1].active = true;
+                                    return true;
+                                }
+                                
+                            }
+
+                            
+
+
                         else {
                             step.hasError = true;
                         }
