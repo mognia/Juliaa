@@ -8,6 +8,7 @@ import { AdminUserListComponent } from './admin-user-list/admin-user-list.compon
 import { ReferalComponent } from './referal/referal.component';
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+
 export const routes: Routes = [
     {
         path: '', 

@@ -17,18 +17,21 @@ import { HttpModule } from '@angular/http';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-
+import { ForgetPassResetComponent } from "./pages/forget-pass-reset/forget-pass-reset.component";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     
-
+    ForgetPassResetComponent,
 
 
   ],
   imports: [
     MatButtonModule, MatCheckboxModule,MatExpansionModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     FlashMessagesModule.forRoot(),
     BrowserModule,

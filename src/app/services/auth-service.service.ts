@@ -128,6 +128,12 @@ export class AuthService {
     return this.http.post('http://localhost:3000/users/changepassword', form, { headers: headers })
       .map(res => res.json());
   }
+  ForgetResetPass(form){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/resetpassword', form, { headers: headers })
+      .map(res => res.json());
+  }
 
   loggedIn() {
     return tokenNotExpired('id_token');
