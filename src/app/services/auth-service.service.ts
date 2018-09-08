@@ -60,7 +60,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users//verifykyc', form, { headers: headers })
+    return this.http.post('http://localhost:3000/users/verifykyc', form, { headers: headers })
       .map(res => res.json());
   }
   changeRole(form) {
@@ -118,9 +118,18 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/list', { headers: headers })
+    return this.http.get('http://localhost:3000/users/listroles', { headers: headers })
       .map(res => res.json());
   }
+  getUserListKyc(){
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/users/listkyc', { headers: headers })
+      .map(res => res.json());
+  }
+
 
   resetPasswor(form){
     let headers = new Headers();

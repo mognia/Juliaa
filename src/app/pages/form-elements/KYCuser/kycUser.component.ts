@@ -25,6 +25,7 @@ export class KycUserComponent {
     public photo: any;
     public router: Router;
     haveImg:boolean=false;
+    ax;
     photoName: any;
     photoContent: any;
     fileExtension: any;
@@ -70,6 +71,7 @@ export class KycUserComponent {
         }
         else{
             console.log(event.target.files[0]);
+            this.ax =event.target.files[0];
             this.fileExtensionError = false;
             this.fileExtensionMessage='';
             this.haveImg=true;
@@ -181,7 +183,7 @@ export class KycUserComponent {
         this.details.phone = this.personalForm.value.phone;
         this.details.wallet = this.personalForm.value.wallet;
         this.details.address = this.AddressForm.value.address;
-        // this.details.image = this.AddressForm.value.image;
+        this.details.image = this.ax;
 
     }
 

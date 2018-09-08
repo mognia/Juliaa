@@ -6,6 +6,7 @@ import { disk_space } from '../dashboard.data';
 @Component({
   selector: 'app-disk-space',
   templateUrl: './disk-space.component.html',
+  styleUrls: ['./disk.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class DiskSpaceComponent {
@@ -26,6 +27,7 @@ export class DiskSpaceComponent {
   public previousMenuTypeOption:string;
   public settings: Settings;
   constructor(public appSettings:AppSettings) {
+
     this.settings = this.appSettings.settings;
     this.initPreviousSettings(); 
   }
@@ -44,7 +46,9 @@ export class DiskSpaceComponent {
       this.initPreviousSettings();
     }
   }
-
+// public kyc(){
+//   this.router.navigate(['pages/form-elements/UserKYC']);
+// }
   public checkAppSettingsChanges(){
     if(this.previousShowMenuOption != this.settings.theme.showMenu ||
       this.previousMenuOption != this.settings.theme.menu ||

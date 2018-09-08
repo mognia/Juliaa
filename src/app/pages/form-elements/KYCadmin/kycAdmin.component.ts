@@ -30,8 +30,9 @@ export class KycAdminComponent {
         });
         this.email = this.form.controls['email'];
         this.verifyFirstName = this.form.controls['verifyFirstName'];
-        this.authService.getUserList().subscribe(data => {
-
+        this.authService.getUserListKyc().subscribe(data => {
+            console.log(data);
+            
             
             data.users.forEach(user => {
      
