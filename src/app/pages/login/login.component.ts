@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   public form:FormGroup;
   public email:AbstractControl;
   public password:AbstractControl;
+  logdin:boolean=false;
 defmsg;
 paramMsg;
   constructor(private activatedRoute: ActivatedRoute,router:Router, 
@@ -47,6 +48,10 @@ paramMsg;
           
           // this.flashMessage.show( params['msg'], {cssClass: 'alert-success', timeout: 10000});
         });
+
+        if(this.authService.loggedIn()) {
+          this.logdin = true;
+        }
     
   }
 

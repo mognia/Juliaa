@@ -24,7 +24,7 @@ export class KycUserComponent {
     public confirmed: boolean;
     public photo: any;
     public router: Router;
-    haveImg:boolean=false;
+    haveImg:boolean=true;
     ax;
     photoName: any;
     photoContent: any;
@@ -32,18 +32,17 @@ export class KycUserComponent {
      fileExtensionError: boolean ;
      validAddress:boolean =true;
     fileExtensionMessage: any;
+
     dateFormControl = new FormControl('', [
         Validators.required,
     ]);
     image(event) {
         let fileType = event.target.files[0].type;
         let fileSize = event.target.files[0].size;
-
             console.log(fileType);
-            if (fileType == 'application/x-msdownload') {
-                this.fileExtensionError = true;
-                this.fileExtensionMessage='';
-                this.fileExtensionMessage='This is Not an Valid image please select .png or .jpg file';
+            if (!event.target.files && !event.target.files[0]) {
+                
+                this.haveImg = false;
                 
             }
 
@@ -113,13 +112,12 @@ export class KycUserComponent {
             'wallet': ['',Validators.required],
 
         });
-
         this.AddressForm = this.formBuilder.group({
             'address': ['', Validators.required],
             'image': ['']
         });
     }
-    public next() {
+    public next() {        
         this.haveImg=false;
         let accountForm = this.accountForm;
         let personalForm = this.personalForm;
@@ -184,7 +182,6 @@ export class KycUserComponent {
         this.details.wallet = this.personalForm.value.wallet;
         this.details.address = this.AddressForm.value.address;
         this.details.image = this.ax;
-
     }
 
     public prev() {
@@ -224,18 +221,18 @@ export class KycUserComponent {
     public isAddress(event){
 
         if (!/^(0x)?[0-9a-f]{40}$/i.test(event)) {
-            document.getElementById('walletDiv').classList.add("has-danger");
-            document.getElementById('walletDiv').classList.remove("has-success");
+            // document.getElementById('walletDiv').classList.add("has-danger");
+            // document.getElementById('walletDiv').classList.remove("has-success");
             // check if it has the basic requirements of an address
             console.log('not Address');
-            this.haveImg=false;
+            this.personalForm.controls['wallet'].setErrors({'incorrect': true});
             return false;
         } else if (/^(0x)?[0-9a-f]{40}$/.test(event) || /^(0x)?[0-9A-F]{40}$/.test(event)) {
-            document.getElementById('walletDiv').classList.remove("has-danger");
-            document.getElementById('walletDiv').classList.add("has-success");
+            // document.getElementById('walletDiv').classList.remove("has-danger");
+            // document.getElementById('walletDiv').classList.add("has-success");
             // If it's all small caps or all all caps, return true
             console.log('address');
-            this.haveImg=true;
+            // this.haveImg=true;
             return true;
         } 
         console.log(event);

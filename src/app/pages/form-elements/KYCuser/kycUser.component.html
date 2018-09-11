@@ -140,13 +140,15 @@
                             <small class="text-danger" *ngIf="step.hasError && personalForm.get('phone').hasError('required')">Phone is required</small>
                         </div>
 
-                        <div class="form-group col-md-12" id="walletDiv" [ngClass]="{'has-danger' : step.hasError&& validAddress && personalForm.get('wallet').hasError('required'), 'has-success' : !personalForm.get('wallet').hasError('required') }">
+                        <div class="form-group col-md-12" id="walletDiv" [ngClass]="{'has-danger' : (step.hasError&& personalForm.get('wallet').hasError('incorrect')) || (step.hasError&& personalForm.get('wallet').hasError('required')), 'has-success' : !personalForm.get('wallet').hasError('required') &&  !personalForm.get('wallet').hasError('incorrect') }">
                             <label class="form-control-label">Wallet Address</label>
-                            <input (input)='isAddress($event.target.value)' style="max-width:50%;" formControlName="wallet" class="form-control" [ngClass]="{'form-control-danger' :  personalForm.get('wallet').hasError('required'), 'form-control-success' :  !personalForm.get('wallet').hasError('required') }"
+                            <input (input)='isAddress($event.target.value)' style="max-width:50%;" formControlName="wallet" class="form-control" [ngClass]="{'form-control-danger' :  (step.hasError&& personalForm.get('wallet').hasError('incorrect')) || (step.hasError&& personalForm.get('wallet').hasError('required')), 'form-control-success' :  !personalForm.get('wallet').hasError('required') && !personalForm.get('wallet').hasError('required') }"
                                 type="text">
                             <small class="text-danger" *ngIf="step.hasError && personalForm.get('wallet').hasError('required')">required</small>
+                            <small class="text-danger" *ngIf="step.hasError && personalForm.get('wallet').hasError('incorrect')">incorrect Wallet Address</small>
+
                         </div>
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-12" [ngClass]="{'form-control-danger' : step.hasError&& personalForm.get('birth').hasError('required'), 'form-control-success' : !personalForm.get('birth').hasError('required') }">
                             <label style="margin-right:1%" for="input-12">Birth Date</label>
                             <mat-form-field class="example-full-width">
                                 <input formControlName="birth" matInput [min]="minDate" [max]="maxDate" [errorStateMatcher]="matcher" [matDatepicker]="picker"
@@ -157,7 +159,7 @@
                                     Birth Date is
                                     <strong>Not Valid</strong>
                                 </mat-error>
-                                <mat-error *ngIf="dateFormControl.hasError('required')">
+                                <mat-error *ngIf="step.hasError&& personalForm.get('birth').hasError('required')">
                                     Birth Date is
                                     <strong>required</strong>
                                 </mat-error>
@@ -178,7 +180,7 @@
                         <div class="col-lg-4 mb-4">
                             <h6>Image upload</h6>
                             <!-- <input type="file"  (change)="image($event)" formControlName="image" > -->
-                            <input type="file" accept="image/*" id="imginput" (change)="image($event)" #input class="img-upload-btn"  />
+                            <input type="file" accept="image/*" formControlName="image" id="imginput" (change)="image($event)"  class="img-upload-btn"  />
 
                             <button class="btn btn-info btn-block rounded-0" type="button">
                                 <span *ngIf="!photo">
@@ -190,12 +192,11 @@
                             <div class="image-wrapper">
                                 <i *ngIf="photo" class="fa fa-times delete-img" (click)="removeImage()"></i>
                                 <img [attr.src]="photo" *ngIf="photo" width="100%">
-                                <img src="assets/img/app/no-image.png" *ngIf="!image" width="100%">
+                                <img src="assets/img/app/no-image.png" *ngIf="!photo" width="100%">
                             </div>
 
 
                             <div class="err">{{fileExtensionMessage}}</div>
-                            <div *ngIf="step.hasError && AddressForm.get('image').hasError('required')" class="err">Passport Image Is required</div>
                         </div>
                     </form>
 
@@ -244,9 +245,13 @@
                     <div class="col">
                         <button class="btn btn-primary pull-left" (click)="prev()">
                             <i class="fa fa-chevron-left arrow"></i>&nbsp; Prev Step</button>
-                        <button *ngIf="!steps[steps.length-1].active " [disabled]=" fileExtensionError || !haveImg " class="btn btn-primary pull-right" (click)="next()">Next Step &nbsp;
-                            <i class="fa fa-chevron-right arrow"></i>
-                        </button>
+
+                                <button *ngIf="!steps[steps.length-1].active" [disabled]=" fileExtensionError || !haveImg " class="btn btn-primary pull-right" (click)="next()">Next Step &nbsp;
+                                    <i class="fa fa-chevron-right arrow"></i>
+                                    
+                            </button>
+
+
                         <button *ngIf="steps[steps.length-1].active" class="btn btn-primary pull-right" (click)="confirm()">Confirm &nbsp;
                             <i class="fa fa-check arrow"></i>
                         </button>
