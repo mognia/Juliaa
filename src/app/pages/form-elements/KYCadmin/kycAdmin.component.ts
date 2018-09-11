@@ -18,6 +18,7 @@ export class KycAdminComponent {
     public email:AbstractControl;
     public form:FormGroup;
     public router: Router;
+    noUser;
     users=[];
     userEmail;
     selected = [];
@@ -26,13 +27,20 @@ export class KycAdminComponent {
         this.form = fb.group({
             verifyFirstName: [false],
             verifyLastName: [false],
+            verifyBirthDate: [false],
+            verifyWallet: [false],
+            verifyAddress: [false],
+            verifyPassportImage: [false],
+            verifyTelephone: [false],
             email:['']
         });
         this.email = this.form.controls['email'];
         this.verifyFirstName = this.form.controls['verifyFirstName'];
         this.authService.getUserListKyc().subscribe(data => {
             console.log(data);
-            
+            if (data.users.length ==0) {
+                this.noUser=true;
+            }
             
             data.users.forEach(user => {
      
@@ -60,7 +68,16 @@ export class KycAdminComponent {
         // }
         value['email'] = this.userEmail
 
+        this.authService.verifykyc(value).subscribe(data => {
+            if(data.success) {
+              this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
+              location.reload();
 
+            } else {
+              this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
+
+            }
+          });
         console.log(value);
         
 

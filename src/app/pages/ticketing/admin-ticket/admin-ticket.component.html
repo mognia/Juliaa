@@ -5,40 +5,30 @@
     </div>
   
     <div class="card-body pt-0 widget-body">
-       
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Subject</th>
-                    <th>State</th>
-                    <th>Priorty</th>
-                    <th>Conversation</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr >
-                    <th scope="row">1</th>
-                    <td>9/4/2018</td>
-                    <td>Some Subject</td>
-                    <td><span class="badge badge-success mr-1">Solved</span></td>
-                    <td>1</td>
-                    <td>
-                        <button  (click)="ShowTicket()" class="btn btn-success btn-rounded w-100p mb-1 mr-1" type="button">Answer</button>
-                    </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>8/4/2018</td>
-                  <td>Some Subject2</td>
-                  <td><span (click)="State()" style="padding: 4px 18px;margin: 0 0 0 4px;cursor: pointer;" class="badge badge-warning mr-1">!</span></td>
-                  <td>2</td>
-                  <td>
-                    <button  (click)="ShowTicket()" class="btn btn-success btn-rounded w-100p mb-1 mr-1" type="button">Answer</button>
-                  </td>
-              </tr>
-            </tbody>
-        </table>
-    </div>
+     
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ticket NO.</th>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>State</th>
+                        <th>Token Type</th>
+                        <th>Conversation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ticket of ticketsArr">
+                        <th scope="row">{{ticket.ticketNumber}}</th>
+                        <td>{{ticket.lastReplayDate}}</td>
+                        <td>{{ticket.subject}}</td>
+                        <td><span class="badge badge-success mr-1">{{ticket.status}}</span></td>
+                        <td>{{ticket.tokenType}}</td>
+                        <td>
+                          <button   (click)="ShowTicket(ticket.ticketNumber)" class="btn btn-info btn-rounded w-100p mb-1 mr-1" type="button">Reply</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
   </div>

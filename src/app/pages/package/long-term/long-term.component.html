@@ -5,10 +5,15 @@
         <img class="card-img-top w-100 h-100" src="assets/img/app/5.jpg" alt="Card image cap">
         <div class="card-body" style="text-align:center"> 
             <h5 class="card-title">Long Term Package</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi laborum itaque, reiciendis accusantium reprehenderit labore consectetur necessitatibus voluptas, doloribus ullam officiis porro inventore beatae sapiente nihil! Dignissimos inventore sunt optio!.</p>
-            <p class="card-text"><small class="text-muted">By clicking to link below you agree our Terms & Privacy Policy</small></p>
-            <a class="btn btn-outline-gray">Buy Now</a>                              
+            <p class="card-text"> Invest on the projects overall profitability over a 3 year horizon  .</p>
+            <p class="card-text">You might choose to enter or exit the plan as you wish by buying / selling the tokens through our automated merchant</p>
+            <p class="card-text">Although achieving profits with a long-term investment plan might come with a lower profit margin, it might be the optimal choice based on your risk apetite</p>
+            <p class="card-text">Estimated daily profitability margin of 0.33% is set for this plans tokens which sums to 1% monthly profit</p>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" (change)="handleChange($event)" class="custom-control-input" id="checkboxDefault" >
+                <label class="custom-control-label" for="checkboxDefault">By clicking to Button below you agree our Terms & Privacy Policy</label>
+            </div>
+            <button [disabled]="!accept" class="btn btn-primary">Buy Now</button>                              
         </div>
     </div>
 </div>

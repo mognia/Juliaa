@@ -1,0 +1,42 @@
+<div class="form-group">
+  <div class="input-group col-md-4">
+      <input (input)="onSearchChange($event.target.value)" type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-append">
+          <button type="button" class="btn btn-info">Go!</button>
+      </span>
+  </div>
+</div>
+<div class="col-lg-10 mb-4">
+  <div widget class="card border-0 box-shadow">
+      <div class="card-header transparent border-0 text-muted">
+          <h5 class="mb-0">User list</h5>
+      
+      </div>
+      <div class="card-body pt-0 widget-body">
+
+           
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+
+                      <th>Email</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let email of users">
+                      <td>{{email}}</td>
+                      <td>
+                        <button class="btn btn-outline-primary w-100p mb-1 mr-1" type="button">Action 1</button>
+                      </td>
+                      <td>
+                        <button class="btn btn-outline-success w-100p mb-1 mr-1" type="button">Action 2</button>
+                      </td>
+                      <td>
+                        <button class="btn btn-outline-warning w-100p mb-1 mr-1" type="button">Action 3</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

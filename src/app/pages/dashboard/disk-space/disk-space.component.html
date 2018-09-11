@@ -11,8 +11,8 @@
             <p>Regster date:</p> <p>2018/8/9</p>
         </div>
         <div class="kyc">
-            <p class="auth">Authentication Status: </p> <p class="authTxt">NO</p>
-            <button type="button" style="    width: 21%;
+            <p class="auth">Authentication Status: </p> <p   *ngIf="!KYCVerified" class="authTxt">NO</p> <p   *ngIf="KYCVerified" class="authTxt">Yes</p>
+            <button *ngIf="!KYCVerified" type="button" style="    width: 21%;
             margin: 2%;" class="btn btn-success" (click)="kyc()">
                     KYC
                   </button>

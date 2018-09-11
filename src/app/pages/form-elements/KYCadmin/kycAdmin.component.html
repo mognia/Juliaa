@@ -7,7 +7,7 @@
         by just clicking on correct or incorrect values you can accept or denied informations
     </p>
 </div> -->
-<mat-accordion>
+<mat-accordion *ngIf="!noUser">
 
     <mat-expansion-panel (click)="getmail(user.email)" (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngFor="let user of users">
         <mat-expansion-panel-header>
@@ -38,18 +38,67 @@
                                 <mat-radio-button  [value]="false">Incorrect</mat-radio-button>
                               </mat-radio-group>
                 </div>
-            <button  class="btn" type="submit">Submite</button>
+                <div class="form-group">
+                    <label class="label">Birth Date:</label>
+                        <p class="val">{{user.birthDate}}</p>
+                        
+                        <mat-radio-group class="rad" formControlName="verifyBirthDate">
+                                <mat-radio-button  [value]="true">Correct</mat-radio-button>
+                                <mat-radio-button  [value]="false">Incorrect</mat-radio-button>
+                              </mat-radio-group>
+                </div>
+                <div class="form-group">
+                    <label class="label">User Address:</label>
+                        <p class="val">{{user.address}}</p>
+                        
+                        <mat-radio-group class="rad" formControlName="verifyAddress">
+                                <mat-radio-button  [value]="true">Correct</mat-radio-button>
+                                <mat-radio-button  [value]="false">Incorrect</mat-radio-button>
+                              </mat-radio-group>
+                </div>
+                <div class="form-group">
+                    <label class="label">User Telephone:</label>
+                        <p class="val">{{user.telephone}}</p>
+                        
+                        <mat-radio-group class="rad" formControlName="verifyTelephone">
+                                <mat-radio-button  [value]="true">Correct</mat-radio-button>
+                                <mat-radio-button  [value]="false">Incorrect</mat-radio-button>
+                              </mat-radio-group>
+                </div>
+                <div class="form-group">
+                    <label class="label">User WalletAddress:</label>
+                        <p class="val">{{user.walletAddress}}</p>
+                        
+                        <mat-radio-group class="rad" formControlName="verifyWallet">
+                                <mat-radio-button  [value]="true">Correct</mat-radio-button>
+                                <mat-radio-button  [value]="false">Incorrect</mat-radio-button>
+                              </mat-radio-group>
+                </div>
+                <div class="form-group">
+                    <label class="label">User Passport Image:</label>
+
+                        <img src="http://localhost:3000/{{user.passportImageAddress}}" alt="">
+                        
+                        <mat-radio-group class="rad" formControlName="verifyPassportImage">
+                                <mat-radio-button  [value]="true">Correct</mat-radio-button>
+                                <mat-radio-button  [value]="false">Incorrect</mat-radio-button>
+                              </mat-radio-group>
+                </div>
+            <button  class="btn" type="submit">Submit</button>
         </form>
 
     </mat-expansion-panel>
 </mat-accordion>
 
-<nav style="margin-top: 2%" aria-label="Page navigation example">
+<div class="noUser" *ngIf="noUser">
+<p>None of Your Users Requested for Verify KYC Yet!</p>
+</div>
+
+<!-- <nav style="margin-top: 2%" aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item"><a class="page-link">Previous</a></li>
             <li class="page-item active"><a class="page-link" >1</a></li>
-            <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+
             <li class="page-item"><a class="page-link" >Next</a></li>
         </ul>
-    </nav>
+    </nav> -->

@@ -41,6 +41,7 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 
 
@@ -82,6 +83,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     ReferalComponent,
     ResetPassComponent,
     UserDashboardComponent,
+    UsersListComponent,
 
 
   ],

@@ -1,7 +1,7 @@
 import { Menu } from './menu.model';
 
 export const verticalMenuItems = [ 
-    new Menu (1, 'Dashboard', '/pages/dashboard', null, 'tachometer', null, false, 0,'user'),
+    new Menu (1, 'Dashboard', '/pages/dashboard', null, 'tachometer', null, false, 0,'any'),
     // new Menu (2, 'Membership', '/pages/membership', null, 'users', null, false, 0), 
     // new Menu (3, 'UI Features', null, null, 'laptop', null, true, 0),   
     // new Menu (4, 'Buttons', '/pages/ui/buttons', null, 'keyboard-o', null, false, 3),  
@@ -18,7 +18,7 @@ export const verticalMenuItems = [
     // new Menu (21, 'Form Controls', '/pages/form-elements/controls', null, 'check-square-o', null, false,0),
     // new Menu (22, 'Form Layouts', '/pages/form-elements/layouts', null, 'th-large', null, false, 20),
     // new Menu (23, 'Form Validations', '/pages/form-elements/validations', null, 'exclamation-triangle', null, false, 0),
-    new Menu (2, 'User Dashboard', '/pages/userDashboard', null, 'tachometer', null, false, 0,'admin'),
+    // new Menu (2, 'User Dashboard', '/pages/userDashboard', null, 'tachometer', null, false, 0,'admin'),
     new Menu (3, 'User KYC', '/pages/form-elements/UserKYC', null, 'magic', null, false, 0,'user'),
     // new Menu (25, 'Admin KYC', '/pages/form-elements/AdminKYC', null, 'magic', null, false, 0),
     // new Menu (25, 'Editor', '/pages/form-elements/editor', null, 'pencil', null, false, 20),
@@ -31,9 +31,9 @@ export const verticalMenuItems = [
     new Menu (7, 'Packages', null, null, 'caret-right', null, true, 0,'user'),
     new Menu (8, 'LongTerm', '/pages/package/LongTerm', null, 'keyboard-o', null, false, 7,'user'),
     new Menu (9, 'ShortTerm', '/pages/package/ShortTerm', null, 'keyboard-o', null, false, 7,'user'),
-    new Menu (10, 'User List', '/pages/userList', null, 'caret-right', null, false, 0,'admin'),
+    new Menu (10, 'Change Role', '/pages/ChangeRole', null, 'caret-right', null, false, 0,'admin'),
     new Menu (11, 'Referal', '/pages/referal', null, 'keyboard-o', null, false, 0,'user'),
-
+    new Menu (12, 'Usres List', '/pages/UserList', null, 'caret-right', null, false, 0,'admin'),
     new Menu (30, 'NGX DataTable', '/pages/tables/dynamic-tables/ngx', null, 'caret-right', null, false, 28,'admin'), 
     // new Menu (31, 'Tools', null, null, 'wrench', null, true, 0),
     // new Menu (32, 'Drag & Drop', '/pages/tools/drag-drop', null, 'hand-paper-o', null, false, 31), 

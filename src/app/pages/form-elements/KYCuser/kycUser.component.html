@@ -2,28 +2,12 @@
 <p class="text-muted">you can send us your Information to compelete your Registration.</p>
 
 
-<div class="row">
+<div *ngIf="!KYCVerified" class="row">
     <div class="col">
         <div widget class="card border-0 box-shadow">
             <div class="card-header transparent border-0 text-muted">
                 <h5 class="mb-0">KYC form</h5>
-                <div class="widget-controls">
-                    <a data-widgster="expand" href="#" class="transition">
-                        <i class="fa fa-chevron-down"></i>
-                    </a>
-                    <a data-widgster="collapse" href="#" class="transition">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <a data-widgster="fullscreen" href="#" class="transition">
-                        <i class="fa fa-expand"></i>
-                    </a>
-                    <a data-widgster="restore" href="#" class="transition">
-                        <i class="fa fa-compress"></i>
-                    </a>
-                    <a data-widgster="close" href="#" class="transition">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </div>
+
             </div>
             <div *ngIf="!confirmed" class="card-body widget-body">
                 <div class="row">
@@ -41,53 +25,6 @@
                         <h4 class="mt-3 mb-3">
                             <i class="fa {{ step.icon }}"></i> {{step.name}}</h4>
                     </div>
-
-                    <!-- <form *ngIf="step.name=='Account Information'" [formGroup]="accountForm" class="row bg-light pt-2">
-
-                        <div class="form-group col-md-7" [ngClass]="{'has-danger' : step.hasError && accountForm.get('username').hasError('required'), 'has-success' : !accountForm.get('username').hasError('required') }">
-                            <label class="form-control-label">Username</label>
-                            <div class="input-group"> 
-                                <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-user-o"></i></span></div>  
-                                <input formControlName="username" class="form-control" [ngClass]="{'form-control-danger' :  accountForm.get('username').hasError('required'), 'form-control-success' :  !accountForm.get('username').hasError('required') }" type="text"> 
-                            </div>
-                            <small class="text-danger" *ngIf="step.hasError && accountForm.get('username').hasError('required')">Username is required</small>                             
-                        </div>
-
-                        <div class="form-group col-md-7" [ngClass]="{'has-danger' : (step.hasError && accountForm.get('password').hasError('required')) || (step.hasError && accountForm.get('password').hasError('minlength')), 
-                                                                     'has-success' : !accountForm.get('password').hasError('required') && !accountForm.get('password').hasError('minlength')}">
-                            <label class="form-control-label">Password</label> 
-                            <div class="input-group"> 
-                                <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-key"></i></span></div>                       
-                                <input formControlName="password" class="form-control" [ngClass]="{'form-control-danger' : (step.hasError && accountForm.get('password').hasError('required')) || (step.hasError && accountForm.get('password').hasError('minlength')),                                                                                                        'form-control-success' : !accountForm.get('password').hasError('required') && !accountForm.get('password').hasError('minlength')}" type="password">
-                            </div>
-                            <small class="text-danger" *ngIf="step.hasError && accountForm.get('password').hasError('required')">Password is required</small>                              
-                            <small class="text-danger" *ngIf="step.hasError && accountForm.get('password').hasError('minlength')">Password isn't long enough, minimum of 6 characters</small>                            
-                        </div>
-
-                        <div class="form-group col-md-7" [ngClass]="{'has-danger' : (step.hasError && accountForm.get('confirmPassword').hasError('required')) || (step.hasError && accountForm.get('confirmPassword').hasError('equalTo')), 
-                                                                     'has-success' : !accountForm.get('confirmPassword').hasError('required') && !accountForm.get('confirmPassword').hasError('equalTo')}">
-                            <label class="form-control-label">Confirm Password</label>                              
-                            <div class="input-group"> 
-                                <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-key"></i></span></div>     
-                                <input formControlName="confirmPassword" class="form-control" [ngClass]="{'form-control-danger' : (step.hasError && accountForm.get('confirmPassword').hasError('required')) || (step.hasError && accountForm.get('confirmPassword').hasError('equalTo')), 
-                                                                                                          'form-control-success' : !accountForm.get('confirmPassword').hasError('required') && !accountForm.get('confirmPassword').hasError('equalTo')}" type="password" >
-                            </div>
-                            <small class="text-danger" *ngIf="step.hasError && accountForm.get('confirmPassword').hasError('required')">Password is required</small>                              
-                            <small class="text-danger" *ngIf="step.hasError && accountForm.get('confirmPassword').hasError('equalTo')">Passwords do not match</small> 
-                        </div>
-
-                        <div class="form-group col-md-7" [ngClass]="{'has-danger' : (step.hasError && accountForm.get('email').hasError('required')) || (step.hasError && accountForm.get('email').hasError('email')), 
-                                                            'has-success' : !accountForm.get('email').hasError('required') && !accountForm.get('email').hasError('email')}">
-                            <label class="form-control-label">Email</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-envelope"></i></span></div>
-                                <input formControlName="email" class="form-control" [ngClass]="{'form-control-danger' : (step.hasError && accountForm.get('email').hasError('required')) || (step.hasError && accountForm.get('email').hasError('email')), 
-                                                                                                'form-control-success' :  !accountForm.get('email').hasError('required') && !accountForm.get('email').hasError('email')}" type="text">                      
-                            </div>
-                            <small class="text-danger" *ngIf="step.hasError && accountForm.get('email').hasError('required')">Email is required</small>                              
-                            <small class="text-danger" *ngIf="step.hasError && accountForm.get('email').hasError('email')">Invalid email address</small>
-                        </div>
-                    </form> -->
 
                     <form *ngIf="step.name=='Personal Information'" [formGroup]="personalForm" class="row bg-light pt-2">
 
@@ -264,8 +201,8 @@
 
                 <div class="col bg-light p-5">
                     <div class="d-flex justify-content-center align-items-center flex-column bg-light confirmed-content">
-                        <i class="fa fa-check text-success" aria-hidden="true"></i>
-                        <h2 class="p-3">That's all, thank you!</h2>
+                        <i *ngIf="dataSuccess" class="fa fa-check text-success" aria-hidden="true"></i>
+                        <h2 class="p-3">{{dataMsg}}</h2>
 
                         <p class="p-2">You will receive an email confirmation shortly at {{this.details.email}}</p>
                         <button class="btn btn-success" (click)="home()">Back to home</button>
@@ -276,4 +213,8 @@
 
         </div>
     </div>
+</div>
+
+<div  *ngIf="KYCVerified" class="verified">
+<p><i class="fa fa-check text-success" aria-hidden="true"></i>Your KYC has been Verified</p>
 </div>

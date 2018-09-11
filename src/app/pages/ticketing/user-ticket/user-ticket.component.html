@@ -18,22 +18,24 @@ margin: 2%;" class="btn btn-success" data-toggle="modal" data-target="#exampleMo
             <div class="modal-body">
                     <div class="card-body widget-body">
 
-                            <form class="form-horizontal">
+                            <form *ngIf="!successTicket" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
                                 <div class="form-group row text-sm-right">
                                     <label for="email-h-f" class="col-sm-3 form-control-label mt-1">Subject</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="email-h-t">
+                                        <input [formControl]="subject" type="text" class="form-control" id="email-h-t">
+                                        <small class="text-danger" *ngIf="form.get('subject').touched">
+                                            <span *ngIf="form.get('subject').hasError('required')">Subject is required</span>
+                                        </small> 
                                     </div>
                                 </div>
                                 <div class="form-group">
                                         <label class="col-sm-2" style="    margin-left: 40px;" for="exampleSelect2">Token</label>
-                                        <select style="    display: inline-block;max-width: 74%;" class="form-control col-sm-9" id="exampleSelect2">
-                                            <option>Token#1</option>
-                                            <option>Token#2</option>
-                                            <option>Token#3</option>
+                                        <select [formControl]="tokenType" style="    display: inline-block;max-width: 74%;" class="form-control col-sm-9" id="exampleSelect2">
+                                            <option>Normal</option>
+                                            <option>Risky</option>
                                         </select>
                                     </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                         <label class="col-sm-3" style=" text-align: center;
                                         padding-left: 46px;" for="exampleSelect1">Priority</label>
                                         <select style="      max-width: 73%;
@@ -42,26 +44,37 @@ margin: 2%;" class="btn btn-success" data-toggle="modal" data-target="#exampleMo
                                             <option>2</option>
                                             <option>3</option>
                                         </select>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group row text-sm-right">
                                             <label for="email-h-f" class="col-sm-3 form-control-label mt-1">Descript</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="email-h-t">
+                                                <textarea [formControl]="description" type="text" class="form-control" id="email-h-t"></textarea>
+                                                <small class="text-danger" *ngIf="form.get('description').touched">
+                                                    <span *ngIf="form.get('description').hasError('required')">Descript is required</span>
+                                                </small> 
                                             </div>
                                         </div>
-                                        <div class="form-group">
-
-                                                <textarea class="form-control" id="textarea-1"></textarea>
-                                            </div>
-
+                                        <div class="custom-control form-group custom-checkbox">
+                                            <input type="checkbox" [formControl]="recieveEmail" class="custom-control-input" id="checkboxDefault" >
+                                            <label class="custom-control-label" for="checkboxDefault">Send me an Email if this ticket answered</label>
+                                        </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-success">Send Ticket</button>
+                                              </div>
                             </form>
-                           
+                           <div *ngIf="successTicket">
+                            <div class="modal-footer">
+                                <div class="success">
+                                        <p>Your Ticket Sent SuccessFully</p>         
+                                </div>
+
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                           </div>
                         </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success">Send Ticket</button>
-            </div>
+
           </div>
         </div>
       </div>
@@ -75,35 +88,25 @@ margin: 2%;" class="btn btn-success" data-toggle="modal" data-target="#exampleMo
       <table class="table table-striped">
           <thead>
               <tr>
-                  <th>#</th>
+                  <th>Ticket NO.</th>
                   <th>Date</th>
                   <th>Subject</th>
                   <th>State</th>
-                  <th>Priorty</th>
+                  <th>Token Type</th>
                   <th>Conversation</th>
               </tr>
           </thead>
           <tbody>
-              <tr >
-                  <th scope="row">1</th>
-                  <td>9/4/2018</td>
-                  <td>Some Subject</td>
-                  <td><span class="badge badge-success mr-1">Solved</span></td>
-                  <td>1</td>
+              <tr *ngFor="let ticket of ticketsArr">
+                  <th scope="row">{{ticket.ticketNumber}}</th>
+                  <td>{{ticket.lastReplayDate}}</td>
+                  <td>{{ticket.subject}}</td>
+                  <td><span class="badge badge-success mr-1">{{ticket.status}}</span></td>
+                  <td>{{ticket.tokenType}}</td>
                   <td>
-                    <button  (click)="ShowTicket()" class="btn btn-info btn-rounded w-100p mb-1 mr-1" type="button">Answer</button>
+                    <button   (click)="ShowTicket(ticket.ticketNumber)" class="btn btn-info btn-rounded w-100p mb-1 mr-1" type="button">Reply</button>
                   </td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>8/4/2018</td>
-                <td>Some Subject2</td>
-                <td><span (click)="State()" style="padding: 4px 18px;margin: 0 0 0 4px;cursor: pointer;" class="badge badge-warning mr-1">!</span></td>
-                <td>2</td>
-                <td>
-                  <button  (click)="ShowTicket()" class="btn btn-info btn-rounded w-100p mb-1 mr-1" type="button">Answer</button>
-                </td>
-            </tr>
           </tbody>
       </table>
   </div>

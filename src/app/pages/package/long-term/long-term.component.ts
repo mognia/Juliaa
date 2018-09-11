@@ -7,10 +7,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class LongTermComponent implements OnInit {
-
+  accept =false
   constructor() { }
 
   ngOnInit() {
+    console.log(this.accept);
+    
   }
-
+  handleChange(evt) {
+    this.accept=true
+  }
 }

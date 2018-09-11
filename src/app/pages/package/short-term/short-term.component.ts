@@ -7,10 +7,13 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class ShortTermComponent implements OnInit {
-
+  accept =false
   constructor() { }
 
   ngOnInit() {
+  }
+  handleChange(evt) {
+    this.accept=true
   }
 
 }

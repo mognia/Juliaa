@@ -10,7 +10,7 @@ import { disk_space } from '../dashboard.data';
   encapsulation: ViewEncapsulation.None
 })
 export class DiskSpaceComponent {
-
+  KYCVerified:boolean=false;
   public data: any[];
  
   public showLegend = false;
@@ -34,6 +34,10 @@ export class DiskSpaceComponent {
 
   ngOnInit(){
     this.data = disk_space;  
+    const user = JSON.parse(localStorage.getItem('user')) ;
+    if (user.KYCVerified) {
+        this.KYCVerified=true
+    }
   }
   
   public onSelect(event) {

@@ -7,7 +7,10 @@ import * as CanvasJS from './canvasjs.min'
   encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
+
 	ngOnInit() {
+
+
     let dataPoints = [];
     let y = 0;		
     for ( var i = 0; i < 50; i++ ) {		  

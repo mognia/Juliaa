@@ -24,6 +24,9 @@ export class KycUserComponent {
     public confirmed: boolean;
     public photo: any;
     public router: Router;
+    dataSuccess:boolean;
+    dataMsg;
+    KYCVerified:boolean=false;
     haveImg:boolean=true;
     ax;
     photoName: any;
@@ -87,6 +90,11 @@ export class KycUserComponent {
     }
 
     constructor( public dialog: MatDialog,router: Router, private authService: AuthService, private formBuilder: FormBuilder, private flashMessage: FlashMessagesService) {
+        const user = JSON.parse(localStorage.getItem('user')) ;
+        if (user.KYCVerified) {
+            this.KYCVerified=true
+        }
+        
         this.router = router;
         this.steps = [
             //   {name: 'Account Information', icon: 'fa-lock', active: true, valid: false, hasError:false },
@@ -118,15 +126,18 @@ export class KycUserComponent {
         });
     }
     public next() {        
-        this.haveImg=false;
+
         let accountForm = this.accountForm;
         let personalForm = this.personalForm;
         let AddressForm = this.AddressForm;
-      
+      if (personalForm.valid) {
+        this.haveImg=false; 
+      }
         if (this.steps[this.steps.length - 1].active)
             return false;
 
         this.steps.some(function (step, index, steps) {
+
             if (index < steps.length - 1) {
                 if (step.active) {
                     // if(step.name=='Account Information'){
@@ -152,6 +163,7 @@ export class KycUserComponent {
                         }
                     }
                     if (step.name == 'Address Information') {
+                        
 
                                 if (AddressForm.valid) {
                                     step.active = false;
@@ -206,9 +218,13 @@ export class KycUserComponent {
         this.authService.updatekyc(this.details).subscribe(data => {
             if (data.success) {
                 this.flashMessage.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
+                this.dataSuccess = true;
+                this.dataMsg = data.msg;
                 //   this.router.navigate(['/login']);
             } else {
                 this.flashMessage.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
+                this.dataSuccess = false;
+                this.dataMsg = data.msg;
                 //   this.router.navigate(['/register']);
             }
         });
