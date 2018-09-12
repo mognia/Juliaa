@@ -24,14 +24,14 @@ export class TicketService {
 
     console.log(body);
     
-    return this.http.post('http://localhost:3000/tickets/create', body, { headers: headers })
+    return this.http.post('/tickets/create', body, { headers: headers })
       .map(res => res.json());
   }
   listmy(){
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
-    return this.http.get('http://localhost:3000/tickets/listmy', { headers: headers })
+    return this.http.get('/tickets/listmy', { headers: headers })
       .map(res => res.json());
   }
   currentTicket(num){
@@ -45,21 +45,21 @@ export class TicketService {
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
-    return this.http.post('http://localhost:3000/tickets/replay',values, { headers: headers })
+    return this.http.post('/tickets/replay',values, { headers: headers })
       .map(res => res.json());
   }
   listAdmin(){
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
-    return this.http.get('http://localhost:3000/tickets/listall', { headers: headers })
+    return this.http.get('/tickets/listall', { headers: headers })
       .map(res => res.json());
   }
   answer(values){
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
-    return this.http.post('http://localhost:3000/tickets/answer',values, { headers: headers })
+    return this.http.post('/tickets/answer',values, { headers: headers })
       .map(res => res.json());
   }
 

@@ -17,13 +17,15 @@ export class RegisterComponent {
     public password:AbstractControl;
     public referal:AbstractControl;
     public confirmPassword:AbstractControl;
-    
+    logdin:boolean=false;
     constructor(private activatedRoute: ActivatedRoute,router:Router,
                  fb:FormBuilder,
                  private authService:AuthService,
                  private flashMessage: FlashMessagesService){
                              // subscribe to router event
-
+                             if(this.authService.loggedIn()) {
+                                this.logdin = true;
+                              }
         this.router = router;
         this.form = fb.group({
             email: ['', Validators.compose([Validators.required, emailValidator])],
@@ -52,14 +54,16 @@ export class RegisterComponent {
                 // Register user
     this.authService.registerUser(values).subscribe(data => {
         if(data.success) {
-          this.flashMessage.show('You are now registered and can now login', {cssClass: 'alert-success', timeout: 3000});
-          this.router.navigate(['/login']);
+          this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 10000});
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+        }, 10000); 
+
         } else {
-          this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+          this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
           this.router.navigate(['/register']);
         }
       });
-            this.router.navigate(['/login']);
         }
     }
 

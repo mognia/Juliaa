@@ -46,22 +46,6 @@
 
 
 
-                        <div class="form-group col-md-12" [ngClass]="{'has-danger' : (step.hasError && personalForm.get('email').hasError('required')) || (step.hasError && personalForm.get('email').hasError('email')), 
-                                                                     'has-success' : !personalForm.get('email').hasError('required') && !personalForm.get('email').hasError('email')}">
-                            <label class="form-control-label">Contact email</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fa fa-envelope"></i>
-                                    </span>
-                                </div>
-                                <input style="max-width:48%;" formControlName="email" class="form-control" [ngClass]="{'form-control-danger' : (step.hasError && personalForm.get('email').hasError('required')) || (step.hasError && personalForm.get('email').hasError('email')), 
-                                                                                                'form-control-success' :  !personalForm.get('email').hasError('required') && !personalForm.get('email').hasError('email')}"
-                                    type="text">
-                            </div>
-                            <small class="text-danger" *ngIf="step.hasError && personalForm.get('email').hasError('required')">Email is required</small>
-                            <small class="text-danger" *ngIf="step.hasError && personalForm.get('email').hasError('email')">Invalid email address</small>
-                        </div>
 
                         <div class="form-group col-md-12" [ngClass]="{'has-danger' : step.hasError && personalForm.get('phone').hasError('required'), 'has-success' : !personalForm.get('phone').hasError('required') }">
                             <label class="form-control-label">Phone</label>
@@ -150,12 +134,7 @@
                         <div class="col-10">
                             <i>{{details.wallet}} &nbsp;</i>
                         </div>
-                        <div class="col-2">
-                            <strong class="text-truncate">Contact Email</strong>
-                        </div>
-                        <div class="col-10">
-                            <i>{{details.email}}</i>
-                        </div>
+
                         <div class="col-2">
                             <strong class="text-truncate">Phone NO.</strong>
                         </div>

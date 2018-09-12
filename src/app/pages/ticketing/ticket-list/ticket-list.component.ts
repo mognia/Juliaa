@@ -16,8 +16,8 @@ export class TicketListComponent implements OnInit {
    current;
    ticketsArr=[];
    replays;
-   userEmail;
-   sameMail:boolean=false;
+
+
   constructor(private activatedRoute: ActivatedRoute,router:Router, private ticketService: TicketService,fb:FormBuilder,private flashMessage: FlashMessagesService) {
     this.router = router;
     this.form = fb.group({

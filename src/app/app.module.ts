@@ -19,6 +19,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import { ForgetPassResetComponent } from "./pages/forget-pass-reset/forget-pass-reset.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatButtonModule, MatCheckboxModule,MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     HttpModule,
     FlashMessagesModule.forRoot(),
     BrowserModule,
@@ -39,7 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDe_oVpi9eRSN99G4o6TwVjJbFBNr58NxE'
     }),
-    CalendarModule.forRoot(),
+    // CalendarModule.forRoot(),
     routing
   ],
   providers: [ AppSettings,AuthService,AuthGuard ],

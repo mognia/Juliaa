@@ -41,7 +41,7 @@ export class ReferalComponent implements OnInit {
   ngOnInit() {
     const user = localStorage.getItem('user');
     this.UerId =JSON.parse(user).id;
-    this.UserLink ="http://localhost:4200/#/register?referalCode="+ this.UerId;
+    this.UserLink ="http://88.198.19.87:3000/panel/#/register?referalCode="+ this.UerId;
   }
 
   onSearchChange(searchValue : string){

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { tokenNotExpired } from 'angular2-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,7 @@ export class AuthService {
   authToken: any;
   user: any;
 
-  constructor(private http: Http) {
+  constructor(public jwtHelper: JwtHelperService,private http: Http) {
     // this.isDev = true;
   }
   registerUser(user) {
@@ -19,20 +20,20 @@ export class AuthService {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/register', user, { headers: headers })
+    return this.http.post('/users/register', user, { headers: headers })
       .map(res => res.json());
   }
 
   authenticateUser(user) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers })
+    return this.http.post('/users/authenticate', user, { headers: headers })
       .map(res => res.json());
   }
   forgetPass(email) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/forgotpassword', email, { headers: headers })
+    return this.http.post('/users/forgotpassword', email, { headers: headers })
       .map(res => res.json());
   }
   updatekyc(form) {
@@ -43,7 +44,7 @@ export class AuthService {
     headers.append('Authorization', this.authToken);
     // headers.append('Content-Type', 'multipart/form-data');
     let body = new FormData();
-    body.append('email', form.email);
+    // body.append('email', form.email);
     body.append('firstName', form.firstname);
     body.append('lastName', form.lastname);
     body.append('birthDate', form.birth);
@@ -52,7 +53,7 @@ export class AuthService {
     body.append('address', form.address);
     body.append('passportImage', form.image);
 
-    return this.http.post('http://localhost:3000/users/updatekyc', body, { headers: headers })
+    return this.http.post('/users/updatekyc', body, { headers: headers })
       .map(res => res.json());
   }
   verifykyc(form) {
@@ -60,7 +61,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/verifykyc', form, { headers: headers })
+    return this.http.post('/users/verifykyc', form, { headers: headers })
       .map(res => res.json());
   }
   changeRole(form) {
@@ -68,7 +69,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/changeroles', form, { headers: headers })
+    return this.http.post('/users/changeroles', form, { headers: headers })
       .map(res => res.json());
   }
   getProfile() {
@@ -76,7 +77,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/profile', { headers: headers })
+    return this.http.get('/users/profile', { headers: headers })
       .map(res => res.json());
   }
   getReferal() {
@@ -84,7 +85,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/getreferal', { headers: headers })
+    return this.http.get('/users/getreferal', { headers: headers })
       .map(res => res.json());
   }
   adminKyc() {
@@ -92,7 +93,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/verifykyc', { headers: headers })
+    return this.http.get('/users/verifykyc', { headers: headers })
       .map(res => res.json());
   }
 
@@ -118,7 +119,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/listroles', { headers: headers })
+    return this.http.get('/users/listroles', { headers: headers })
       .map(res => res.json());
   }
   getUserListKyc(){
@@ -126,7 +127,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/listkyc', { headers: headers })
+    return this.http.get('/users/listkyc', { headers: headers })
       .map(res => res.json());
   }
 
@@ -134,18 +135,18 @@ export class AuthService {
   resetPasswor(form){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/changepassword', form, { headers: headers })
+    return this.http.post('/users/changepassword', form, { headers: headers })
       .map(res => res.json());
   }
   ForgetResetPass(form){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/resetpassword', form, { headers: headers })
+    return this.http.post('/users/resetpassword', form, { headers: headers })
       .map(res => res.json());
   }
 
   loggedIn() {
-    return tokenNotExpired('id_token');
+    return this.jwtHelper.isTokenExpired('id_token');
   }
 
   logout() {

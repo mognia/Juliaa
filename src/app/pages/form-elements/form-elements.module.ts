@@ -13,7 +13,7 @@ import { ImageUploaderComponent } from './controls/image-uploader/image-uploader
 import { MultipleImageUploaderComponent } from './controls/multiple-image-uploader/multiple-image-uploader.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 import { ValidationsComponent } from './validations/validations.component';
-import { KycUserComponent } from './kycUser/kycUser.component';
+import { KycUserComponent } from './KYCuser/kycUser.component';
 import { KycAdminComponent } from "./KYCadmin/kycAdmin.component";
 import { EditorComponent } from './editor/editor.component';
 import {MatNativeDateModule,MatButtonModule, MatCheckboxModule,MatFormFieldModule,} from '@angular/material';

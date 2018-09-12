@@ -13,8 +13,8 @@ import {MatDialog,MAT_DIALOG_DATA} from '@angular/material';
 })
 
 export class KycUserComponent {
-    minDate = new Date(2000, 0, 1);
-    maxDate = new Date(2020, 0, 1);
+    minDate = new Date(1900, 0, 1);
+    maxDate = new Date(2000, 0, 1);
     public steps: any[];
     public accountForm: FormGroup;
     public personalForm: FormGroup;
@@ -115,7 +115,7 @@ export class KycUserComponent {
             'firstname': ['', Validators.required],
             'lastname': ['', Validators.required],
             'birth': ['', Validators.required],
-            'email': ['', Validators.compose([Validators.required, CustomValidators.email])],
+
             'phone': ['', Validators.required],
             'wallet': ['',Validators.required],
 
@@ -213,7 +213,7 @@ export class KycUserComponent {
     public confirm() {
         this.steps.forEach(step => step.valid = true);
         this.confirmed = true;
-        console.log(this.details);
+        // console.log(this.details);
 
         this.authService.updatekyc(this.details).subscribe(data => {
             if (data.success) {
