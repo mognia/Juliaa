@@ -23,7 +23,7 @@ export class RegisterComponent {
                  private authService:AuthService,
                  private flashMessage: FlashMessagesService){
                              // subscribe to router event
-                             if(this.authService.loggedIn()) {
+                             if(!this.authService.loggedIn()) {
                                 this.logdin = true;
                               }
         this.router = router;
@@ -53,14 +53,16 @@ export class RegisterComponent {
             console.log(values);
                 // Register user
     this.authService.registerUser(values).subscribe(data => {
-        if(data.success) {
-          this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 10000});
+        let msg = data['msg'];
+        let success = data['success'];
+        if(success) {
+          this.flashMessage.show(msg, {cssClass: 'alert-success', timeout: 10000});
           setTimeout(() => {
             this.router.navigate(['/login']);
         }, 10000); 
 
         } else {
-          this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
+          this.flashMessage.show(msg, {cssClass: 'alert-danger', timeout: 3000});
           this.router.navigate(['/register']);
         }
       });

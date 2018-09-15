@@ -40,8 +40,10 @@ export class UserTicketComponent implements OnInit {
 
   ngOnInit() {
     this.ticketService.listmy().subscribe(data=>{
-      console.log(data);
-      data.tickets.forEach(ticket => {
+      let tickets = data['tickets'];
+
+
+      tickets.forEach(ticket => {
         this.ticketsArr.push(ticket);
       });
       console.log(this.ticketsArr);
@@ -50,7 +52,8 @@ export class UserTicketComponent implements OnInit {
   }
   public onSubmit(values: Object) {
     this.ticketService.create(values).subscribe(data => {
-      if(data.success) {
+      let success = data['success'];
+      if(success) {
         // this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 5000});
         this.successTicket = true;
       } else {

@@ -1,4 +1,7 @@
 <div id="accordion-1" role="tablist" aria-multiselectable="true">
+    <div style="padding: 22px"  widget class="card border-0 box-shadow">
+        <p class="urMsg"> Ticket Message:</p> <p class="msg">{{description}}</p> 
+       </div>
     <div widget class="card border-0 box-shadow">
         <div class="card-header transparent border-0 text-muted">
             <h5 class="mb-0">Answer</h5>       
@@ -14,6 +17,10 @@
 
         </div>
     </div>
+    <div widget class="urRp card border-0 box-shadow">
+        <p *ngIf="replays.length">Replays For This Ticket</p> 
+        <p *ngIf="!replays.length">No Replays for this ticket Yet :( </p>
+       </div>
   <div class="card" *ngFor="let rep of replays">
     <div class="card-header" role="tab" id="headingOne">
       <h5 class="mb-0">

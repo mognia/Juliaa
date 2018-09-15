@@ -37,12 +37,14 @@ export class KycAdminComponent {
         this.email = this.form.controls['email'];
         this.verifyFirstName = this.form.controls['verifyFirstName'];
         this.authService.getUserListKyc().subscribe(data => {
+
+            let users = data['users']
             console.log(data);
-            if (data.users.length ==0) {
+            if (users.length ==0) {
                 this.noUser=true;
             }
             
-            data.users.forEach(user => {
+            users.forEach(user => {
      
                     if (!user.KYCVerified) {
                         this.users.push(user)
@@ -69,12 +71,15 @@ export class KycAdminComponent {
         value['email'] = this.userEmail
 
         this.authService.verifykyc(value).subscribe(data => {
-            if(data.success) {
-              this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
+            let msg = data['msg'];
+            let success = data['success'];
+
+            if(success) {
+              this.flashMessage.show(msg, {cssClass: 'alert-success', timeout: 3000});
               location.reload();
 
             } else {
-              this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
+              this.flashMessage.show(msg, {cssClass: 'alert-danger', timeout: 3000});
 
             }
           });

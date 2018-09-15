@@ -22,15 +22,14 @@ import { HorizontalMenuComponent } from '../theme/components/menu/horizontal-men
 import { BreadcrumbComponent } from '../theme/components/breadcrumb/breadcrumb.component';
 import { BackTopComponent } from '../theme/components/back-top/back-top.component';
 import { FullScreenComponent } from '../theme/components/fullscreen/fullscreen.component';
-import { ApplicationsComponent } from '../theme/components/applications/applications.component';
-import { MessagesComponent } from '../theme/components/messages/messages.component';
+
+
 import { UserMenuComponent } from '../theme/components/user-menu/user-menu.component';
-import { FlagsMenuComponent } from '../theme/components/flags-menu/flags-menu.component';
-import { SideChatComponent } from '../theme/components/side-chat/side-chat.component';
-import { FavoritesComponent } from '../theme/components/favorites/favorites.component';
-import { BlankComponent } from './blank/blank.component';
-import { SearchComponent } from './search/search.component';
-import { KycAdminComponent } from './kyc-admin/kyc-admin.component';
+
+
+
+
+
 import { AdminUserListComponent } from './admin-user-list/admin-user-list.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -70,15 +69,12 @@ import { UsersListComponent } from './users-list/users-list.component';
     BreadcrumbComponent,
     BackTopComponent,
     FullScreenComponent,
-    ApplicationsComponent,
-    MessagesComponent,
+
+
     UserMenuComponent,
-    FlagsMenuComponent,
-    SideChatComponent,
-    FavoritesComponent,
-    BlankComponent,
-    SearchComponent,
-    KycAdminComponent,
+ 
+
+
     AdminUserListComponent,
     ReferalComponent,
     ResetPassComponent,

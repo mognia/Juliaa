@@ -14,7 +14,9 @@ export class UsersListComponent implements OnInit {
   ngOnInit() {
 
     this.authService.getUserList().subscribe(data => {
-      data.users.forEach(user => {
+      let users = data['users'];
+
+      users.forEach(user => {
         this.users.push(user.email);
         this.temp.push(user.email)
       });

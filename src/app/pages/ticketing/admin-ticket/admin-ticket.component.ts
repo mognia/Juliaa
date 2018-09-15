@@ -19,8 +19,9 @@ export class AdminTicketComponent implements OnInit {
 
   ngOnInit() {
     this.ticketService.listAdmin().subscribe(data=>{
+      let tickets = data['tickets'];
       console.log(data);
-      data.tickets.forEach(ticket => {
+      tickets.forEach(ticket => {
         this.ticketsArr.push(ticket);
       });
       console.log(this.ticketsArr);

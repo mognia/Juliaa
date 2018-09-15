@@ -6,7 +6,7 @@
     <div class="d-flex h-100" [ngClass]="{'flex-row': settings.theme.menu == 'vertical', 'flex-column': settings.theme.menu != 'vertical'}">
         <app-sidebar *ngIf="settings.theme.menu == 'vertical'"></app-sidebar> 
         <div class="main-content"> 
-            <app-side-chat></app-side-chat>         
+       
             <flash-messages></flash-messages>  
             <!-- <app-breadcrumb></app-breadcrumb>             -->
             <router-outlet></router-outlet>              

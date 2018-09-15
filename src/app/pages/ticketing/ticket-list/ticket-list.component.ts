@@ -16,7 +16,7 @@ export class TicketListComponent implements OnInit {
    current;
    ticketsArr=[];
    replays;
-
+   description;
 
   constructor(private activatedRoute: ActivatedRoute,router:Router, private ticketService: TicketService,fb:FormBuilder,private flashMessage: FlashMessagesService) {
     this.router = router;
@@ -35,17 +35,19 @@ export class TicketListComponent implements OnInit {
 
    this.current = this.ticketService.GetCurrentTicket();
    this.ticketService.listmy().subscribe(data=>{
+    let tickets = data['tickets'];
     console.log(data);
-    data.tickets.forEach(ticket => {
+    tickets.forEach(ticket => {
       this.ticketsArr.push(ticket);
     });
     this.ticketsArr.forEach(i => {
       if (i.ticketNumber == this.current) {
         console.log(i);
         this.replays = i.replays;
+        this.description = i.description;
       }
     });
-    console.log(this.replays);
+    console.log(this.description);
     // this.replays.forEach(rep=>{
     //   if (rep.userEmail = this.userEmail) {
     //     this.sameMail=true;
@@ -58,11 +60,13 @@ export class TicketListComponent implements OnInit {
   public onSubmit(values:Object) {
     values['ticketNumber'] = this.current
     this.ticketService.replay(values).subscribe(data=>{
-      if(data.success) {
-        this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 6000});
+      let success = data['success'];
+      let msg = data['msg'];
+      if(success) {
+        this.flashMessage.show(msg, {cssClass: 'alert-success', timeout: 6000});
         this.router.navigate(['pages/ticketing/UserTicket']);
       } else {
-        this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
+        this.flashMessage.show(msg, {cssClass: 'alert-danger', timeout: 5000});
 
       }
       

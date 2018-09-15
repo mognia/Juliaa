@@ -216,15 +216,18 @@ export class KycUserComponent {
         // console.log(this.details);
 
         this.authService.updatekyc(this.details).subscribe(data => {
-            if (data.success) {
-                this.flashMessage.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
+            let msg = data['msg'];
+            let success = data['success'];
+
+            if (success) {
+                this.flashMessage.show(msg, { cssClass: 'alert-success', timeout: 3000 });
                 this.dataSuccess = true;
-                this.dataMsg = data.msg;
+                this.dataMsg = msg;
                 //   this.router.navigate(['/login']);
             } else {
-                this.flashMessage.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
+                this.flashMessage.show(msg, { cssClass: 'alert-danger', timeout: 3000 });
                 this.dataSuccess = false;
-                this.dataMsg = data.msg;
+                this.dataMsg = msg;
                 //   this.router.navigate(['/register']);
             }
         });

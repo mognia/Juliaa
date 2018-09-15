@@ -34,13 +34,16 @@ export class ForgetPassComponent implements OnInit {
       if (this.form.valid) {
         this.authService.forgetPass(values).subscribe(data => {
           console.log(data);
-          
-            if(data.success) {
-              this.authService.storeUserData(data.token, data.user);
+          let msg = data['msg'];
+          let success = data['success'];
+          let token = data ['token'];
+          let user = data['user']
+            if(success) {
+              this.authService.storeUserData(token, user);
               this.flashMessage.show('You are now logged in', {cssClass: 'alert-success', timeout: 5000});
               this.router.navigate(['/login']);
             } else {
-              this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
+              this.flashMessage.show(msg, {cssClass: 'alert-danger', timeout: 5000});
             }
         });
           this.router.navigate(['pages/dashboard']);

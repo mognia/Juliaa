@@ -50,8 +50,9 @@ export class AdminUserListComponent implements OnInit {
   this.canVerifyKYC = this.form.controls['canVerifyKYC'];
   this.email = this.form.controls['email'];
     this.authService.getUserList().subscribe(data => {
-      
-      data.users.forEach(user => {
+
+      let users = data['users']
+      users.forEach(user => {
         var roleStr = ""
         user.roles.forEach(a => {
           roleStr += a.roleTitle + " ,";
@@ -59,7 +60,7 @@ export class AdminUserListComponent implements OnInit {
         });
         user.roles = roleStr.slice(0,-2);
       });
-      this.rows=data.users
+      this.rows=users
       
 
 
@@ -70,12 +71,13 @@ export class AdminUserListComponent implements OnInit {
     console.log(values);
     this.authService.changeRole(values).subscribe(data => {
       console.log(data);
-      
-      if(data.success) {
-        this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
+      let msg = data['msg'];
+      let success = data['success'];
+      if(success) {
+        this.flashMessage.show(msg, {cssClass: 'alert-success', timeout: 3000});
         location.reload();
       } else {
-        this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
+        this.flashMessage.show(msg, {cssClass: 'alert-danger', timeout: 3000});
       }
     });
     

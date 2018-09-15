@@ -29,12 +29,15 @@ export class ResetPassComponent implements OnInit {
   }
   submitForm(values:Object){
     if (this.form.valid) {
+      
       this.authService.resetPasswor(values).subscribe(data => {
-          if(data.success) {
-            this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 5000});
+        let msg = data['msg'];
+        let success = data['success'];
+          if(success) {
+            this.flashMessage.show(msg, {cssClass: 'alert-success', timeout: 5000});
             this.router.navigate(['/pages']);
           } else {
-            this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
+            this.flashMessage.show(msg, {cssClass: 'alert-danger', timeout: 5000});
           }
       });
       

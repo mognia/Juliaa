@@ -23,6 +23,8 @@ paramMsg;
               fb:FormBuilder,
               private authService:AuthService,
               private flashMessage: FlashMessagesService) {
+                 console.log(this.authService.loggedIn());
+                
       this.router = router;
       this.form = fb.group({
           'email': ['', Validators.compose([Validators.required, CustomValidators.email])],
@@ -49,7 +51,7 @@ paramMsg;
           // this.flashMessage.show( params['msg'], {cssClass: 'alert-success', timeout: 10000});
         });
 
-        if(this.authService.loggedIn()) {
+        if(!this.authService.loggedIn()) {
           this.logdin = true;
         }
     
@@ -58,14 +60,16 @@ paramMsg;
   public onSubmit(values:Object):void {
       if (this.form.valid) {
         this.authService.authenticateUser(values).subscribe(data => {
-          console.log(data);
-          
-            if(data.success) {
-              this.authService.storeUserData(data.token, data.user);
+          let msg = data['msg'];
+          let success = data['success'];
+          let token = data ['token'];
+          let user = data['user']
+            if(success) {
+              this.authService.storeUserData(token, user);
               this.flashMessage.show('You are now logged in', {cssClass: 'alert-success', timeout: 5000});
               this.router.navigate(['pages/']);
             } else {
-              this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
+              this.flashMessage.show(msg, {cssClass: 'alert-danger', timeout: 5000});
               this.router.navigate(['login']);
             }
         });
