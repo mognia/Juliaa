@@ -23,7 +23,7 @@ export class TicketService {
     body.append('description', ticket.description);
     body.append('tokenType', ticket.tokenType);
     body.append('recieveEmail', ticket.recieveEmail);
-
+    body.append('file', ticket.file);
     console.log(body);
     
     return this.http.post('http://localhost:3000/tickets/create', body, { headers: headers })

@@ -9,11 +9,16 @@
             <p class="card-text">You might choose to enter or exit the plan as you wish by buying / selling the tokens through our automated merchant</p>
             <p class="card-text">Although achieving profits with a long-term investment plan might come with a lower profit margin, it might be the optimal choice based on your risk apetite</p>
             <p class="card-text">Estimated daily profitability margin of 0.33% is set for this plans tokens which sums to 1% monthly profit</p>
-            <div class="custom-control custom-checkbox">
+            <div class="custom-control custom-checkbox" *ngIf='KYCVerified'>
                 <input type="checkbox" (change)="handleChange($event)" class="custom-control-input" id="checkboxDefault" >
                 <label class="custom-control-label" for="checkboxDefault">By clicking to Button below you agree our Terms & Privacy Policy</label>
             </div>
-            <button [disabled]="!accept" class="btn btn-primary">Buy Now</button>                              
+            <button *ngIf='KYCVerified' [disabled]="!accept" class="btn btn-primary">Buy Now</button>
+            <div class="gotoKyc" *ngIf='!KYCVerified'>
+                    <label class="">You didn't Compeleted KYC form Yet First Compelet KYC form....</label>
+                    <button *ngIf='!KYCVerified' (click)="gotoKyc()" class="btn btn-success">KYC Now</button> 
+                </div>
+                                 
         </div>
     </div>
 </div>

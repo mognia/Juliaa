@@ -58,7 +58,7 @@ export class AuthService {
     body.append('address', form.address);
     body.append('passportImage', form.image);
 
-    return this.http.post('/users/updatekyc', body, { headers: headers })
+    return this.http.post('http://localhost:3000/users/updatekyc', body, { headers: headers })
       // .map(res => res.json());
   }
   verifykyc(form) {

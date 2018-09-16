@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { AppSettings } from '../../../app.settings';
 import { Settings } from '../../../app.settings.model';
 import { disk_space } from '../dashboard.data';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-disk-space',
   templateUrl: './disk-space.component.html',
@@ -10,6 +10,7 @@ import { disk_space } from '../dashboard.data';
   encapsulation: ViewEncapsulation.None
 })
 export class DiskSpaceComponent {
+  public router: Router;
   KYCVerified:boolean=false;
   public data: any[];
  
@@ -26,7 +27,8 @@ export class DiskSpaceComponent {
   public previousMenuOption:string;
   public previousMenuTypeOption:string;
   public settings: Settings;
-  constructor(public appSettings:AppSettings) {
+  constructor(router:Router,public appSettings:AppSettings) {
+    this.router = router;
 
     this.settings = this.appSettings.settings;
     this.initPreviousSettings(); 
@@ -50,9 +52,9 @@ export class DiskSpaceComponent {
       this.initPreviousSettings();
     }
   }
-// public kyc(){
-//   this.router.navigate(['pages/form-elements/UserKYC']);
-// }
+public kyc(){
+  this.router.navigate(['pages/form-elements/UserKYC']);
+}
   public checkAppSettingsChanges(){
     if(this.previousShowMenuOption != this.settings.theme.showMenu ||
       this.previousMenuOption != this.settings.theme.menu ||

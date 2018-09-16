@@ -9,11 +9,15 @@
             <p class="card-text">You might choose to enter or exit the plan as you wish by buying / selling the tokens through our automated merchant.</p>
             <p class="card-text">Short term profit / loss is not estimated and the tokens price is set daily based on projects total capital</p>
             <p class="card-text">Projects holdings which counts as input for our pricing model is outlined by several proofs</p>
-            <div class="custom-control custom-checkbox">
+            <div class="custom-control custom-checkbox" *ngIf='KYCVerified'>
                 <input type="checkbox" (change)="handleChange($event)" class="custom-control-input" id="checkboxDefault" >
                 <label class="custom-control-label" for="checkboxDefault">By clicking to Button below you agree our Terms & Privacy Policy</label>
             </div>
-            <button [disabled]="!accept" class="btn btn-primary">Buy Now</button>                                  
+            <button *ngIf='KYCVerified' [disabled]="!accept" class="btn btn-primary">Buy Now</button>       
+            <div class="gotoKyc" *ngIf='!KYCVerified'>
+                    <label class="">You didn't Compeleted KYC form Yet First Compelet KYC form....</label>
+                    <button *ngIf='!KYCVerified' (click)="gotoKyc()" class="btn btn-success">KYC Now</button> 
+                </div>                           
         </div>
     </div>
 </div>

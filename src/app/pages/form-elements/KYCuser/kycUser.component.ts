@@ -1,10 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation,OnInit,ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { AuthService } from "../../../services/auth-service.service";
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import {MatDialog,MAT_DIALOG_DATA} from '@angular/material';
+
 @Component({
     selector: 'app-kycUser',
     templateUrl: './kycUser.component.html',
@@ -12,7 +13,8 @@ import {MatDialog,MAT_DIALOG_DATA} from '@angular/material';
     encapsulation: ViewEncapsulation.None
 })
 
-export class KycUserComponent {
+export class KycUserComponent implements OnInit{
+
     minDate = new Date(1900, 0, 1);
     maxDate = new Date(2000, 0, 1);
     public steps: any[];
@@ -26,7 +28,17 @@ export class KycUserComponent {
     public router: Router;
     dataSuccess:boolean;
     dataMsg;
+    //
     KYCVerified:boolean=false;
+    address;
+    email;
+    firstName;
+    lastname;
+    passImg;
+    telephone;
+    walletAddress;
+    reseted:boolean=false;
+    //
     haveImg:boolean=true;
     ax;
     photoName: any;
@@ -89,11 +101,28 @@ export class KycUserComponent {
 
     }
 
-    constructor( public dialog: MatDialog,router: Router, private authService: AuthService, private formBuilder: FormBuilder, private flashMessage: FlashMessagesService) {
-        const user = JSON.parse(localStorage.getItem('user')) ;
-        if (user.KYCVerified) {
-            this.KYCVerified=true
+    ngOnInit() {
+
+        let user = JSON.parse(localStorage.getItem('user')) ;
+
+        if (this.reseted) {
+            user.KYCVerified = false;
+           
+        } else if (user.KYCVerified) {
+            this.KYCVerified=true;
+            this.firstName = user.firstName;
+            this.lastname = user.lastName;
+            this.address = user.address;
+            this.email = user.email;
+            this.passImg = user.passportImageAddress;
+            this.telephone = user.telephone;
+            this.walletAddress =user.walletAddress;
         }
+
+    }
+    constructor( public dialog: MatDialog,router: Router, private authService: AuthService, private formBuilder: FormBuilder, private flashMessage: FlashMessagesService ) {
+
+
         
         this.router = router;
         this.steps = [
@@ -257,6 +286,7 @@ export class KycUserComponent {
         console.log(event);
         
     }
+
 
 
 }

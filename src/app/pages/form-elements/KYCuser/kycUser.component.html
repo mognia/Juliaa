@@ -2,12 +2,13 @@
 <p class="text-muted">you can send us your Information to compelete your Registration.</p>
 
 
+
 <div *ngIf="!KYCVerified" class="row">
+
     <div class="col">
         <div widget class="card border-0 box-shadow">
             <div class="card-header transparent border-0 text-muted">
                 <h5 class="mb-0">KYC form</h5>
-
             </div>
             <div *ngIf="!confirmed" class="card-body widget-body">
                 <div class="row">
@@ -196,4 +197,69 @@
 
 <div  *ngIf="KYCVerified" class="verified">
 <p><i class="fa fa-check text-success" aria-hidden="true"></i>Your KYC has been Verified</p>
+
+</div>
+<div *ngIf="KYCVerified" class="row preview pt-2 ">
+    <div class="col-1">
+        <strong class="text-truncate">First Name</strong>
+    </div>
+    <div class="col-11">
+        <i>{{firstName}} &nbsp;</i>
+    </div>
+    <div class="col-1">
+        <strong class="text-truncate">lastname</strong>
+    </div>
+    <div class="col-11">
+        <i>{{lastname}} &nbsp;</i>
+    </div>
+
+
+    <div class="col-1">
+        <strong class="text-truncate">Phone NO.</strong>
+    </div>
+    <div class="col-11">
+        <i>{{telephone}}</i>
+    </div>
+    <div class="col-1">
+        <strong class="text-truncate">Address</strong>
+    </div>
+    <div class="col-11">
+        <i>{{address}} &nbsp;</i>
+    </div>
+    <div class="col-1">
+        <strong class="text-truncate">wallet</strong>
+    </div>
+    <div class="col-11">
+        <i>{{walletAddress}} &nbsp;</i>
+    </div>
+
+    <div class="col-1">
+        <strong class="text-truncate">Passport Image</strong>
+    </div>
+    <div class="col-11">
+        <img src='http://localhost:3000/{{passImg}}'>
+    </div>
+    <div class="col-5" style="    margin: 29px 34px;">
+        <button class="btn btn-gray btn-lg btn-block"  data-toggle="modal" data-target="#exampleModalCenter" type="button">Edite form</button>
+        
+    </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Warning!!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          If You want to change any parts of your KYC form please Send Support Ticket... 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -73,10 +73,24 @@
     }
 }
 
-.verified{
+.verified p{
     background: #fff;
     padding: 20px;
     text-align: center;
     font-size: 24px;
     color: green;
+}
+.preview{
+    background: #c5c5c552;
+    margin: 0 2%;
+    line-height: 38px;
+    padding: 21px;
+}
+.preview .col-2 {
+    text-align: right;
+    padding: 5px 0 0 41px;
+}
+.preview img{
+    max-width: 500px;
+    max-height: 500px;
 }
