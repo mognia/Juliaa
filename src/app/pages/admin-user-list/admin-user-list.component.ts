@@ -44,6 +44,7 @@ export class AdminUserListComponent implements OnInit {
       canVerifyKYC:[false],
       email:['']
   });
+  this.authService.getUserList();
   this.user = this.form.controls['user'];
   this.admin = this.form.controls['admin'];
   this.canChangeRoles = this.form.controls['canChangeRoles'];
@@ -61,7 +62,10 @@ export class AdminUserListComponent implements OnInit {
         user.roles = roleStr.slice(0,-2);
       });
       this.rows=users
-      
+      this. rows.forEach(user=>{
+        this.temp.push(user);
+        
+      })
 
 
     });
@@ -86,8 +90,14 @@ export class AdminUserListComponent implements OnInit {
   
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
+
+      // console.log(this.temp);
+      
     const temp = this.temp.filter(function(d) {
-      return d.emial.toLowerCase().indexOf(val) !== -1 || !val;
+console.log(d);
+
+      
+      return d.email.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.rows = temp;
     this.table.offset = 0;

@@ -27,6 +27,27 @@
                             <i class="fa {{ step.icon }}"></i> {{step.name}}</h4>
                     </div>
 
+
+                    <form *ngIf="step.name=='Start ID Verification'" [formGroup]="accountForm" class="row bg-light pt-2">
+                        <!-- <div class="col-md-12 welcome">
+                            <p>please have your ID ready for verification</p>
+
+                            <p>this verification process is designed to confirm your identity and protect you from identity theft</p>
+                        </div> -->
+
+                        <div class="col-lg-12 col-md-12 mb-4">
+                            <div class="card card-outline-success text-center">
+                                <div class="card-body">
+                                    <blockquote class="card-bodyquote">
+                                        <p >please have your ID ready for verification</p>
+                                        <footer>this verification process is designed to confirm your identity and protect you from identity theft </footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+
+
                     <form *ngIf="step.name=='Personal Information'" [formGroup]="personalForm" class="row bg-light pt-2">
 
 
@@ -160,8 +181,8 @@
 
                 <div class="row mt-3">
                     <div class="col">
-                        <button class="btn btn-primary pull-left" (click)="prev()">
-                            <i class="fa fa-chevron-left arrow"></i>&nbsp; Prev Step</button>
+                        <button  class="btn btn-primary pull-left" (click)="prev()">
+                            <i  class="fa fa-chevron-left arrow"></i>&nbsp; Prev Step</button>
 
                                 <button *ngIf="!steps[steps.length-1].active" [disabled]=" fileExtensionError || !haveImg " class="btn btn-primary pull-right" (click)="next()">Next Step &nbsp;
                                     <i class="fa fa-chevron-right arrow"></i>
@@ -199,67 +220,107 @@
 <p><i class="fa fa-check text-success" aria-hidden="true"></i>Your KYC has been Verified</p>
 
 </div>
-<div *ngIf="KYCVerified" class="row preview pt-2 ">
-    <div class="col-1">
-        <strong class="text-truncate">First Name</strong>
-    </div>
-    <div class="col-11">
-        <i>{{firstName}} &nbsp;</i>
-    </div>
-    <div class="col-1">
-        <strong class="text-truncate">lastname</strong>
-    </div>
-    <div class="col-11">
-        <i>{{lastname}} &nbsp;</i>
-    </div>
+<div class="row">
+    <div class="col-md-3"></div>
+        <div *ngIf="KYCVerified" class="col-md-6 preview pt-2 ">
+                <div class="element col-md-12">
+                        <div class="verifyTxt col-md-2">
+                                <strong class="text-truncate">First Name</strong>
+                            </div>
+                            <div class="verifyTitle">
+                                <i>{{firstName}} &nbsp;</i>
+                            </div>
+                </div>
+            
+                
+                <div class="element col-md-12">
+                        <div class="verifyTxt col-md-2">
+                                <strong class="text-truncate">lastname</strong>
+                            </div>
+                            <div class="verifyTitle">
+                                <i>{{lastname}} &nbsp;</i>
+                            </div>
+                    </div>
+            
+            
+                <div class="element col-md-12">
+                        <div class="verifyTxt col-md-2">
+                                <strong class="text-truncate">Phone NO.</strong>
+                            </div>
+                            <div class="verifyTitle">
+                                <i>{{telephone}}</i>
+                            </div>
+                    </div>
+            
+                <div class="element col-md-12">
+                        <div class="verifyTxt col-md-2">
+                                <strong class="text-truncate">Address</strong>
+                            </div>
+                            <div class="verifyTitle">
+                                <i>{{address}} &nbsp;</i>
+                            </div>
+                    </div>
+            
+            
+            
+                <div class="element col-md-12">
+                        <div class="verifyTxt col-md-2">
+                                <strong class="text-truncate">wallet</strong>
+                            </div>
+                            <div class="verifyTitle">
+                                <i>{{walletAddress}} &nbsp;</i>
+                            </div>
+                    </div>
+            
+            
+                <div class="element col-md-12">
 
 
-    <div class="col-1">
-        <strong class="text-truncate">Phone NO.</strong>
-    </div>
-    <div class="col-11">
-        <i>{{telephone}}</i>
-    </div>
-    <div class="col-1">
-        <strong class="text-truncate">Address</strong>
-    </div>
-    <div class="col-11">
-        <i>{{address}} &nbsp;</i>
-    </div>
-    <div class="col-1">
-        <strong class="text-truncate">wallet</strong>
-    </div>
-    <div class="col-11">
-        <i>{{walletAddress}} &nbsp;</i>
-    </div>
+                        
+                        <div class="modal fade" id="noheader-modal" tabindex="-1" role="dialog" style="display: none;">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                            <img src='http://localhost:3000//{{passImg}}'>                            
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="col-1">
-        <strong class="text-truncate">Passport Image</strong>
-    </div>
-    <div class="col-11">
-        <img src='http://localhost:3000/{{passImg}}'>
-    </div>
-    <div class="col-5" style="    margin: 29px 34px;">
-        <button class="btn btn-gray btn-lg btn-block"  data-toggle="modal" data-target="#exampleModalCenter" type="button">Edite form</button>
-        
-    </div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Warning!!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          If You want to change any parts of your KYC form please Send Support Ticket... 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+                        <div class="verifyTxt col-md-2">
+                                <button type="button" class="btn btn-secondary mr-1" data-toggle="modal" data-target="#noheader-modal">Tap to See Passport Image</button>
+                            </div>
+                    </div>
+            
+            
+            
+            
+                <!-- <div class="col-5" style="    margin: 29px 34px;">
+                    <button class="btn btn-gray btn-lg btn-block"  data-toggle="modal" data-target="#exampleModalCenter" type="button">Edite form</button>
+                    
+                </div> -->
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Warning!!</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      If You want to change any parts of your KYC form please Send Support Ticket... 
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
 </div>
+

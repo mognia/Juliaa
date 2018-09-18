@@ -17,7 +17,7 @@ export class ReferalComponent implements OnInit {
   temp = [];
   constructor(router:Router,private authService:AuthService, private flashMessage: FlashMessagesService) {
 
- 
+    this.authService.getReferal();
     this.authService.getReferal().subscribe(data => {
 
       let referals = data['referals']

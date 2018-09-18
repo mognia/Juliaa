@@ -121,7 +121,7 @@ margin: 2%;" class="btn btn-success" data-toggle="modal" data-target="#exampleMo
                   <th scope="row">{{ticket.ticketNumber}}</th>
                   <td>{{ticket.lastReplayDate}}</td>
                   <td>{{ticket.subject}}</td>
-                  <td><span class="badge badge-success mr-1">{{ticket.status}}</span></td>
+                  <td><span  [ngClass]="{'badge-danger': ticket.status=='Closed'}" class="badge badge-success mr-1">{{ticket.status}}</span></td>
                   <td>{{ticket.tokenType}}</td>
                   <td>
                     <button   (click)="ShowTicket(ticket.ticketNumber)" class="btn btn-info btn-rounded w-100p mb-1 mr-1" type="button">Reply</button>

@@ -33,7 +33,7 @@ export class TicketService {
         let headers = new HttpHeaders({       'Authorization' : this.authToken     });
     this.loadToken();
     headers.append('Authorization', this.authToken);
-    return this.http.get('http://localhost:3000/tickets/listmy', { headers: headers })
+    return this.http.get('http://localhost:3000/tickets/listmy', { headers: headers });
       //.map(res => res.json());
   }
   currentTicket(num){

@@ -24,6 +24,7 @@ export class KycAdminComponent {
     selected = [];
     rows:any = [];
     constructor(router:Router,private authService:AuthService, private flashMessage: FlashMessagesService,private fb: FormBuilder) { 
+        this.authService.getUserListKyc();
         this.form = fb.group({
             verifyFirstName: [false],
             verifyLastName: [false],

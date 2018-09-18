@@ -44,16 +44,17 @@
         </form>
       </div>
       
-      
-      <!-- <div class="input-group mb-2">
-        <span class="input-group-prepend">
-          <span class="input-group-text">
-            <i class="fa fa-search"></i>
-          </span>
-        </span>
-        <input class="form-control" type="text" placeholder="Type to filter the name column..." (keyup)="updateFilter($event)" />
-      </div> -->
+      <div class="col-md-2" *ngIf="selected?.length == 0"></div>
+
       <div class="col-md-10">
+          <div class="input-group mb-2">
+              <span class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-search"></i>
+                </span>
+              </span>
+              <input class="form-control" type="text" placeholder="Type to filter the name column..." (keyup)="updateFilter($event)" />
+            </div>
         <ngx-datatable #table class="material" [headerHeight]="40" [limit]="10" [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'"
           [rows]="rows" [loadingIndicator]="loadingIndicator" [selected]="selected" [selectionType]="'radiobutton'" (select)='onSelect($event)'
           [rows]="rows" [columns]="columns">

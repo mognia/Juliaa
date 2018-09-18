@@ -126,18 +126,15 @@ export class KycUserComponent implements OnInit{
         
         this.router = router;
         this.steps = [
-            //   {name: 'Account Information', icon: 'fa-lock', active: true, valid: false, hasError:false },
-            { name: 'Personal Information', icon: 'fa-user', active: true, valid: false, hasError: false },
+              {name: 'Start ID Verification', icon: 'fa-check', active: true, valid: true, hasError:false },
+            { name: 'Personal Information', icon: 'fa-user', active: false, valid: false, hasError: false },
             { name: 'Address Information', icon: 'fa-credit-card', active: false, valid: false, hasError: false },
             { name: 'Confirm Your Details', icon: 'fa-check-square-o', active: false, valid: false, hasError: false }
         ]
 
-        // this.accountForm = this.formBuilder.group({
-        //     'username': ['', Validators.required],
-        //     'password': password,
-        //     'confirmPassword': confirmPassword,
-        //     'email': ['', Validators.compose([Validators.required, CustomValidators.email])]            
-        // });
+        this.accountForm = this.formBuilder.group({
+       
+        });
 
         this.personalForm = this.formBuilder.group({
 
@@ -169,17 +166,17 @@ export class KycUserComponent implements OnInit{
 
             if (index < steps.length - 1) {
                 if (step.active) {
-                    // if(step.name=='Account Information'){
-                    //     if (accountForm.valid) {
-                    //         step.active = false;
-                    //         step.valid = true;
-                    //         steps[index+1].active=true;
-                    //         return true;
-                    //     }
-                    //     else{
-                    //         step.hasError = true;
-                    //     }                      
-                    // }
+                    if(step.name=='Start ID Verification'){
+                        if (accountForm.valid) {
+                            step.active = false;
+                            step.valid = true;
+                            steps[index+1].active=true;
+                            return true;
+                        }
+                        else{
+                            step.hasError = true;
+                        }                      
+                    }
                     if (step.name == 'Personal Information') {
                         if (personalForm.valid) {
                             step.active = false;

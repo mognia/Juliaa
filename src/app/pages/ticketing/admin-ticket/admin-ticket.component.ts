@@ -14,6 +14,7 @@ export class AdminTicketComponent implements OnInit {
   public router: Router;
   constructor(router:Router, private ticketService: TicketService,
     private flashMessage: FlashMessagesService) {
+      this.ticketService.listAdmin()
     this.router = router;
    }
 

@@ -91,6 +91,29 @@
     padding: 5px 0 0 41px;
 }
 .preview img{
-    max-width: 500px;
+    max-width: 470px;
     max-height: 500px;
+}
+
+.element{
+    display: block;
+}
+.verifyTxt{
+    display: inline-block;
+}
+.verifyTitle{
+    display: inline-block;
+}
+
+.welcome{
+    text-align: center;
+}
+
+.card-bodyquote p{
+    font-size: 25px;
+    line-height: 80px;
+}
+
+.card-bodyquote footer{
+    font-size: 19px;
 }

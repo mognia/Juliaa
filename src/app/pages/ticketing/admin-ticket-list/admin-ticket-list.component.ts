@@ -18,6 +18,7 @@ export class AdminTicketListComponent implements OnInit {
    replays;
    description;
   constructor(private activatedRoute: ActivatedRoute,router:Router, private ticketService: TicketService,fb:FormBuilder,private flashMessage: FlashMessagesService) {
+    this.ticketService.listAdmin()
     this.router = router;
     this.form = fb.group({
       answerDesc: [''],

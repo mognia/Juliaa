@@ -20,6 +20,7 @@ export class TicketListComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,router:Router, private ticketService: TicketService,fb:FormBuilder,private flashMessage: FlashMessagesService) {
     this.router = router;
+    this.ticketService.listmy();
     this.form = fb.group({
       replayDesc: [''],
   });

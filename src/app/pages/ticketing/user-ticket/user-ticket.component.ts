@@ -30,6 +30,7 @@ export class UserTicketComponent implements OnInit {
     fb: FormBuilder,
     private ticketService: TicketService,
     private flashMessage: FlashMessagesService) {
+      
     this.router = router;
 
     this.form = fb.group({
@@ -44,10 +45,19 @@ export class UserTicketComponent implements OnInit {
     this.tokenType = this.form.controls['tokenType'];
     this.recieveEmail = this.form.controls['recieveEmail'];
     this.ax = this.form.controls['image'];
-  }
 
+console.log('llll');
+
+this.ticketService.listmy()
+
+
+  }
+  getData(){
+
+  }
   ngOnInit() {
     this.ticketService.listmy().subscribe(data=>{
+
       console.log(data);
       let tickets = data['tickets'];
 
@@ -56,7 +66,12 @@ export class UserTicketComponent implements OnInit {
         this.ticketsArr.push(ticket);
       });
 
-      
+      this.ticketsArr.forEach(ticket=>{
+        if (ticket.status == 'Closed') {
+          console.log(ticket);
+          
+        }
+      })
     })
   }
   public onSubmit(values: Object) {
@@ -68,6 +83,10 @@ export class UserTicketComponent implements OnInit {
       if(success) {
         // this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 5000});
         this.successTicket = true;
+        setTimeout(() => {
+          this.router.navigate(['/pages/ticketing/userTicket']);
+          location.reload();
+      }, 2000); 
       } else {
         // this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
 
