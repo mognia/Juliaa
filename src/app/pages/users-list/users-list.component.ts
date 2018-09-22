@@ -9,10 +9,21 @@ import { AuthService } from "../../services/auth-service.service";
 export class UsersListComponent implements OnInit {
   public users=[];
   temp = [];
+  selectedEmail;
+  address;
+  email;
+  firstName;
+  lastname;
+  passImg;
+  telephone;
+  walletAddress;
+  birthDate;
+  KYCUpdated;
+  KYCVerified;
   constructor(private authService:AuthService) { }
 
   ngOnInit() {
-
+    this.authService.getUserList()
     this.authService.getUserList().subscribe(data => {
       let users = data['users'];
 
@@ -31,6 +42,27 @@ export class UsersListComponent implements OnInit {
     });
     this.users = temp;
     console.log(temp);
+    
+  }
+
+  getKyc(email){
+    console.log(email);
+    this.selectedEmail = email;
+    this.authService.getKyc({'email':email}).subscribe(data=>{
+    let user= data["user"];
+    this.KYCUpdated = user.KYCUpdated;
+    this.KYCVerified = user.KYCVerified;
+    this.address = user.address;
+    this.email = user.email;
+    this.firstName = user.firstName;
+    this.lastname = user.lastName;
+    this.passImg = user.passportImageAddress;
+    this.telephone = user.telephone;
+    this.walletAddress = user.walletAddress;
+    this.birthDate = user.birthDate;
+      // console.log(user.email);
+      
+    });
     
   }
 

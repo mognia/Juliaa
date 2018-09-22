@@ -17,6 +17,7 @@ export class TicketListComponent implements OnInit {
    ticketsArr=[];
    replays;
    description;
+   attachmentAddress;
 
   constructor(private activatedRoute: ActivatedRoute,router:Router, private ticketService: TicketService,fb:FormBuilder,private flashMessage: FlashMessagesService) {
     this.router = router;
@@ -46,6 +47,7 @@ export class TicketListComponent implements OnInit {
         console.log(i);
         this.replays = i.replays;
         this.description = i.description;
+        this.attachmentAddress = i.attachmentAddress;
       }
     });
     console.log(this.description);

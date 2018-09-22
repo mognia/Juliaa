@@ -1,6 +1,9 @@
 <div id="accordion-1" role="tablist" aria-multiselectable="true">
     <div style="padding: 22px"  widget class="card border-0 box-shadow">
         <p class="urMsg"> Ticket Message:</p> <p class="msg">{{description}}</p> 
+        <div  *ngIf="attachmentAddress">
+            <img class="img" src="http://localhost:3000//{{attachmentAddress}}" >
+        </div>
        </div>
     <div widget class="card border-0 box-shadow">
         <div class="card-header transparent border-0 text-muted">

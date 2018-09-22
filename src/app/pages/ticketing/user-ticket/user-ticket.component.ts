@@ -78,17 +78,18 @@ this.ticketService.listmy()
     values['file'] = this.ax;
     console.log(values);
     
-    this.ticketService.create(values).subscribe(data => {
+    this.ticketService.create(values)
+    .subscribe(data => {
       let success = data['success'];
       if(success) {
-        // this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 5000});
+
         this.successTicket = true;
         setTimeout(() => {
-          this.router.navigate(['/pages/ticketing/userTicket']);
+          this.router.navigate(['/pages/ticketing/UserTicket']);
           location.reload();
       }, 2000); 
       } else {
-        // this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
+
 
       }
     });

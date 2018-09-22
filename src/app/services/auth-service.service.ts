@@ -138,7 +138,7 @@ export class AuthService {
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
     return this.http.get('http://localhost:3000/users/listroles', { headers: headers })
-      // .map(res => res.json());
+    .map(result => result);
   }
   getUserListKyc(){
     let headers = new HttpHeaders({
@@ -151,7 +151,15 @@ export class AuthService {
       // .map(res => res.json());
   }
 
-
+  getKyc(email){
+    let headers = new HttpHeaders({
+      'Authorization' : this.authToken
+    });
+    this.loadToken();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/get-kyc', email ,{ headers: headers })
+      // .map(res => res.json());
+  }
   resetPasswor(form){
     let headers = new   HttpHeaders();
     headers.append('Content-Type', 'application/json');

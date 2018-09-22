@@ -26,10 +26,10 @@
                   <tr *ngFor="let email of users">
                       <td>{{email}}</td>
                       <td>
-                        <button class="btn btn-outline-primary w-100p mb-1 mr-1" type="button">Send Ticket</button>
+                        <button class="btn btn-outline-primary " type="button">Send Message</button>
                       </td>
                       <td>
-                        <button class="btn btn-outline-success w-100p mb-1 mr-1" type="button">View KYC</button>
+                        <button  data-toggle="modal" data-target="#kycModal" (click)="getKyc(email)" class="btn btn-outline-success w-100p mb-1 mr-1" type="button">View KYC</button>
                       </td>
                       <td>
                         <button class="btn btn-outline-warning w-100p mb-1 mr-1" type="button">Action 3</button>
@@ -40,3 +40,84 @@
       </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="kycModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{selectedEmail}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div *ngIf="KYCVerified" class="col-md-6 preview pt-2 ">
+                <div class="element col-md-12">
+                        <div class="verifyTxt ">
+                                <strong class="text-truncate">First Name</strong>
+                            </div>
+                            <div class="verifyTitle ">
+                                <i>{{firstName}} &nbsp;</i>
+                            </div>
+                </div>
+            
+                
+                <div class="element col-md-12">
+                        <div class="verifyTxt ">
+                                <strong class="text-truncate">lastname</strong>
+                            </div>
+                            <div class="verifyTitle">
+                                <i>{{lastname}} &nbsp;</i>
+                            </div>
+                    </div>
+            
+            
+                <div class="element col-md-12">
+                        <div class="verifyTxt ">
+                                <strong class="text-truncate">Phone NO.</strong>
+                            </div>
+                            <div class="verifyTitle">
+                                <i>{{telephone}}</i>
+                            </div>
+                    </div>
+            
+                <div class="element col-md-12">
+                        <div class="verifyTxt ">
+                                <strong class="text-truncate">Address</strong>
+                            </div>
+                            <div class="verifyTitle">
+                                <i>{{address}} &nbsp;</i>
+                            </div>
+                    </div>
+            
+            
+            
+                <div class="element col-md-12">
+                        <div class="verifyTxt ">
+                                <strong class="text-truncate">wallet</strong>
+                            </div>
+                            <div class="verifyTitle">
+                                <i>{{walletAddress}} &nbsp;</i>
+                            </div>
+                    </div>
+                    <div class="element col-md-12">
+                        <div class="verifyTxt ">
+                                <strong class="text-truncate">Passport  image:</strong>
+                            </div>
+                            <div class="verifyTitle">
+                                <img style="    max-width: 400px;" src='http://localhost:3000//{{passImg}}'>
+                            </div>
+                    </div>
+            
+            </div>
+            <div *ngIf='!KYCVerified'>
+                <p style="color: red;font-size: 19px;">This user has no Verified KYC yet!</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
