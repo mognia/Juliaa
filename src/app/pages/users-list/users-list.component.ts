@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from "../../services/auth-service.service";
+import { FormGroup, FormControl, FormBuilder, Validators,AbstractControl} from '@angular/forms';
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
@@ -20,7 +21,15 @@ export class UsersListComponent implements OnInit {
   birthDate;
   KYCUpdated;
   KYCVerified;
-  constructor(private authService:AuthService) { }
+  public form:FormGroup;
+  public disable:AbstractControl;
+  public enable:AbstractControl;
+  constructor(private fb: FormBuilder,private authService:AuthService) {
+    this.form = fb.group({
+      disable: [false],
+      enable: [false],
+  });
+   }
 
   ngOnInit() {
     this.authService.getUserList()
@@ -63,6 +72,12 @@ export class UsersListComponent implements OnInit {
       // console.log(user.email);
       
     });
+    
+  }
+
+  activity(email){
+    this.selectedEmail = email;
+    console.log(email);
     
   }
 

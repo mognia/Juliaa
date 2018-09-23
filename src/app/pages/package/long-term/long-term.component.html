@@ -9,16 +9,79 @@
             <p class="card-text">You might choose to enter or exit the plan as you wish by buying / selling the tokens through our automated merchant</p>
             <p class="card-text">Although achieving profits with a long-term investment plan might come with a lower profit margin, it might be the optimal choice based on your risk apetite</p>
             <p class="card-text">Estimated daily profitability margin of 0.33% is set for this plans tokens which sums to 1% monthly profit</p>
-            <div class="custom-control custom-checkbox" *ngIf='KYCVerified'>
+            <div class="custom-control custom-checkbox" *ngIf='KYCVerified && !success&& !havPack'>
                 <input type="checkbox" (change)="handleChange($event)" class="custom-control-input" id="checkboxDefault" >
                 <label class="custom-control-label" for="checkboxDefault">By clicking to Button below you agree our Terms & Privacy Policy</label>
             </div>
-            <button *ngIf='KYCVerified' [disabled]="!accept" class="btn btn-primary">Buy Now</button>
+            <!-- <button *ngIf='KYCVerified' [disabled]="!accept" class="btn btn-primary">Buy Now</button> -->
+            <button type="button" class="btn btn-primary mr-1" *ngIf='KYCVerified  && !success && !havPack' [disabled]="!accept" data-toggle="modal" data-target="#warning-modal">Buy Now</button>
+            <div class="modal fade" id="warning-modal" tabindex="-1" role="dialog" aria-labelledby="modal-warning-label">
+                <div *ngIf="!err && !success" class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header state modal-warning">                                   
+                            <h4 class="modal-title" id="modal-warning-label"><i class="fa fa-exclamation"></i>Warning</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            Are You Shure You Want to Buy this Package?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" (click)='buy()' class="btn btn-warning">Yes</button>
+                            <button type="button"  class="btn btn-default" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div  *ngIf="err" class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header state modal-danger">                                   
+                            <h4 class="modal-title" id="modal-danger-label"><i class="fa fa-exclamation"></i>Error</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                        </div>
+                        <div class="modal-body">
+                           {{errMsg}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  class="btn btn-default" data-dismiss="modal">Try Again</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div  *ngIf="success" class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header state modal-success">                                   
+                            <h4 class="modal-title" id="modal-success-label"><i class="fa fa-exclamation"></i>Done</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                        </div>
+                        <div class="modal-body">
+                           {{errMsg}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="gotoKyc" *ngIf='!KYCVerified'>
                     <label class="">You didn't Compeleted KYC form Yet First Compelet KYC form....</label>
                     <button *ngIf='!KYCVerified' (click)="gotoKyc()" class="btn btn-success">KYC Now</button> 
                 </div>
-                                 
+                <div id="accordion-1" role="tablist" aria-multiselectable="true">
+                <div *ngIf="success || havPack" class="card">
+                    <div class="card-header" role="tab" id="headingThree">
+                      <h5 class="mb-0">
+                        <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          White Paper Address
+                        </a>
+                      </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion-1" role="tabpanel" aria-labelledby="headingThree">
+                      <div class="card-body">
+                        s123123213123124234324
+                      </div>
+                    </div>
+                  </div>       
+                  </div>
         </div>
     </div>
 </div>

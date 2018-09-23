@@ -161,13 +161,17 @@ export class AuthService {
       // .map(res => res.json());
   }
   resetPasswor(form){
-    let headers = new   HttpHeaders();
+    let headers = new HttpHeaders({
+      'Authorization' : this.authToken
+    });
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/users/changepassword', form, { headers: headers })
       // .map(res => res.json());
   }
   ForgetResetPass(form){
-    let headers = new   HttpHeaders();
+    let headers = new HttpHeaders({
+      'Authorization' : this.authToken
+    });;
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/users/resetpassword', form, { headers: headers })
       // .map(res => res.json());
@@ -184,5 +188,13 @@ export class AuthService {
     this.authToken = null;
     this.user = null;
     localStorage.clear();
+  }
+
+  signContract(type){
+    this.loadToken();
+    let headers = new HttpHeaders({       'Authorization' : this.authToken     });
+
+    return this.http.post('http://localhost:3000/users/sign-contract',type, { headers: headers })
+    // .map(result => result);
   }
 }

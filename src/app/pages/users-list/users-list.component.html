@@ -32,7 +32,8 @@
                         <button  data-toggle="modal" data-target="#kycModal" (click)="getKyc(email)" class="btn btn-outline-success w-100p mb-1 mr-1" type="button">View KYC</button>
                       </td>
                       <td>
-                        <button class="btn btn-outline-warning w-100p mb-1 mr-1" type="button">Action 3</button>
+                        <button data-toggle="modal" data-target="#activityModal" class="btn btn-outline-warning w-100p mb-1 mr-1" (click)="activity(email)" type="button">Action 3</button>
+                        <button data-toggle="modal" data-target="#activityModal" class="btn btn-outline-warning w-100p mb-1 mr-1" (click)="activity(email)" type="button">Action 3</button>
                       </td>
                   </tr>
               </tbody>
@@ -106,7 +107,7 @@
                                 <strong class="text-truncate">Passport  image:</strong>
                             </div>
                             <div class="verifyTitle">
-                                <img style="    max-width: 400px;" src='http://localhost:3000//{{passImg}}'>
+                                <img style="    max-width: 400px;" src='/{{passImg}}'>
                             </div>
                     </div>
             
@@ -114,6 +115,38 @@
             <div *ngIf='!KYCVerified'>
                 <p style="color: red;font-size: 19px;">This user has no Verified KYC yet!</p>
             </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{selectedEmail}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="form"  (ngSubmit)="onSubmit(form.value)"  class="text-left mt-4">
+
+                <div class="form-group">
+                    <label class="label">First Name:</label>
+                        <p class="val"></p>
+                        
+                        <mat-radio-group class="rad" formControlName="activity">
+                                <mat-radio-button  [value]="true">Correct</mat-radio-button>
+                                <mat-radio-button  [value]="false">Incorrect</mat-radio-button>
+                              </mat-radio-group>
+                </div>
+                </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

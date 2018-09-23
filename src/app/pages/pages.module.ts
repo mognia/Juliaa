@@ -26,7 +26,7 @@ import { FullScreenComponent } from '../theme/components/fullscreen/fullscreen.c
 
 import { UserMenuComponent } from '../theme/components/user-menu/user-menu.component';
 
-
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -46,7 +46,7 @@ import { UsersListComponent } from './users-list/users-list.component';
 
 @NgModule({
   imports: [
-    MatButtonModule, MatCheckboxModule,MatExpansionModule,MatDatepickerModule,
+    MatButtonModule, MatCheckboxModule,MatExpansionModule,MatDatepickerModule,MatRadioModule,
     NgxDatatableModule,
     CommonModule,
     FormsModule,
