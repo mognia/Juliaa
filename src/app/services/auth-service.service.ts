@@ -197,4 +197,20 @@ export class AuthService {
     return this.http.post('http://localhost:3000/users/sign-contract',type, { headers: headers })
     // .map(result => result);
   }
+
+  activeUser(email){
+
+    this.loadToken();
+    let headers = new HttpHeaders({       'Authorization' : this.authToken     });
+
+    return this.http.post('http://localhost:3000/users/enable',email, { headers: headers })
+  }
+  deactiveUser(email){
+
+    
+    this.loadToken();
+    let headers = new HttpHeaders({       'Authorization' : this.authToken     });
+
+    return this.http.post('http://localhost:3000/users/disable',email, { headers: headers })
+  }
 }

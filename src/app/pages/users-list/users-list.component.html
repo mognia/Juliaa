@@ -29,11 +29,11 @@
                         <button class="btn btn-outline-primary " type="button">Send Message</button>
                       </td>
                       <td>
-                        <button  data-toggle="modal" data-target="#kycModal" (click)="getKyc(email)" class="btn btn-outline-success w-100p mb-1 mr-1" type="button">View KYC</button>
+                        <button  data-toggle="modal" data-target="#kycModal" (click)="getKyc(email)" class="btn btn-outline-warning w-100p mb-1 mr-1" type="button">View KYC</button>
                       </td>
                       <td>
-                        <button data-toggle="modal" data-target="#activityModal" class="btn btn-outline-warning w-100p mb-1 mr-1" (click)="activity(email)" type="button">Action 3</button>
-                        <button data-toggle="modal" data-target="#activityModal" class="btn btn-outline-warning w-100p mb-1 mr-1" (click)="activity(email)" type="button">Action 3</button>
+                        <button data-toggle="modal" data-target="#activModal" class="btn btn-outline-success w-100p mb-1 mr-1" (click)="activity(email)" type="button">Active</button>
+                        <button data-toggle="modal" data-target="#deactivModal" class="btn btn-outline-danger w-100p mb-1 mr-1" (click)="activity(email)" type="button">Deactive</button>
                       </td>
                   </tr>
               </tbody>
@@ -125,32 +125,105 @@
 
 
   <!-- Modal -->
-<div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{selectedEmail}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form [formGroup]="form"  (ngSubmit)="onSubmit(form.value)"  class="text-left mt-4">
 
-                <div class="form-group">
-                    <label class="label">First Name:</label>
-                        <p class="val"></p>
-                        
-                        <mat-radio-group class="rad" formControlName="activity">
-                                <mat-radio-button  [value]="true">Correct</mat-radio-button>
-                                <mat-radio-button  [value]="false">Incorrect</mat-radio-button>
-                              </mat-radio-group>
-                </div>
-                </form>
+
+
+  <div class="modal fade" id="activModal" tabindex="-1" role="dialog" aria-labelledby="modal-warning-label">
+    <div *ngIf="!err && !success" class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header state modal-warning">                                   
+                <h4 class="modal-title" id="modal-warning-label"><i class="fa fa-exclamation"></i>Warning</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                Are You Shure You Want to Active this User? <br>
+                {{selectedUserForActivity}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)='active()' class="btn btn-warning">Yes</button>
+                <button type="button"  class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+
+    <div  *ngIf="err" class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header state modal-danger">                                   
+                <h4 class="modal-title" id="modal-danger-label"><i class="fa fa-exclamation"></i>Error</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+            </div>
+            <div class="modal-body">
+               {{Msg}}
+            </div>
+            <div class="modal-footer">
+                <button type="button"  (click)='reload()' class="btn btn-default" data-dismiss="modal">Try Again</button>
+            </div>
         </div>
-      </div>
+    </div>
+
+    <div  *ngIf="success" class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header state modal-success">                                   
+                <h4 class="modal-title" id="modal-success-label"><i class="fa fa-exclamation"></i>Done</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+            </div>
+            <div class="modal-body">
+               {{Msg}}
+            </div>
+            <div class="modal-footer">
+                <button type="button"  (click)='reload()' class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
   </div>
+
+
+  
+  <div class="modal fade" id="deactivModal" tabindex="-1" role="dialog" aria-labelledby="modal-warning-label">
+        <div *ngIf="!err && !success" class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header state modal-warning">                                   
+                    <h4 class="modal-title" id="modal-warning-label"><i class="fa fa-exclamation"></i>Warning</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    Are You Shure You Want to Deactive this User? <br>
+                    {{selectedUserForActivity}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" (click)='deactive()' class="btn btn-warning">Yes</button>
+                    <button type="button"  class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    
+        <div  *ngIf="err" class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header state modal-danger">                                   
+                    <h4 class="modal-title" id="modal-danger-label"><i class="fa fa-exclamation"></i>Error</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                </div>
+                <div class="modal-body">
+                   {{Msg}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" (click)='reload()' class="btn btn-default" data-dismiss="modal">Try Again</button>
+                </div>
+            </div>
+        </div>
+    
+        <div  *ngIf="success" class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header state modal-success">                                   
+                    <h4 class="modal-title" id="modal-success-label"><i class="fa fa-exclamation"></i>Done</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                </div>
+                <div class="modal-body">
+                   {{Msg}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" (click)='reload()' class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+      </div>

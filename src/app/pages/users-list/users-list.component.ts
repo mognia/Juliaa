@@ -11,6 +11,7 @@ export class UsersListComponent implements OnInit {
   public users=[];
   temp = [];
   selectedEmail;
+  selectedUserForActivity;
   address;
   email;
   firstName;
@@ -21,6 +22,9 @@ export class UsersListComponent implements OnInit {
   birthDate;
   KYCUpdated;
   KYCVerified;
+  Msg;
+  success;
+  err
   public form:FormGroup;
   public disable:AbstractControl;
   public enable:AbstractControl;
@@ -76,9 +80,57 @@ export class UsersListComponent implements OnInit {
   }
 
   activity(email){
-    this.selectedEmail = email;
+    this.selectedUserForActivity = email;
     console.log(email);
     
+  }
+
+  active(){
+    this.authService.activeUser({"email":this.selectedUserForActivity}).subscribe(data=>{
+      console.log(data);
+
+      let msg = data['msg'];
+      this.Msg = msg;
+      let success = data['success'];
+      if(success) {
+
+        this.success = true;
+
+      } else {
+
+        this.err = true;
+        setTimeout(() => {
+          location.reload()
+      }, 3000); 
+      }
+    });
+  }
+  reload(){
+  console.log('reload');
+  
+  location.reload();
+}
+  deactive(){
+    this.authService.deactiveUser({"email":this.selectedUserForActivity}).subscribe(data=>{
+      console.log(data);
+
+      let msg = data['msg'];
+      this.Msg = msg;
+      let success = data['success'];
+      if(success) {
+
+        this.success = true;
+        setTimeout(() => {
+          location.reload()
+      }, 3000);
+      } else {
+
+        this.err = true;
+        setTimeout(() => {
+          location.reload()
+      }, 3000); 
+      }
+    });
   }
 
 }
