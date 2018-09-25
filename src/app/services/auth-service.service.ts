@@ -23,20 +23,20 @@ export class AuthService {
 
     let headers = new   HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/register', user, { headers: headers })
+    return this.http.post('/users/register', user, { headers: headers })
       // .map(res => res.json());
   }
 
   authenticateUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers })
+    return this.http.post('/users/authenticate', user, { headers: headers })
       // .map(res => res.json());
   }
   forgetPass(email) {
     let headers = new   HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/forgotpassword', email, { headers: headers })
+    return this.http.post('/users/forgotpassword', email, { headers: headers })
       // .map(res => res.json());
   }
   updatekyc(form) {
@@ -58,7 +58,7 @@ export class AuthService {
     body.append('address', form.address);
     body.append('passportImage', form.image);
 
-    return this.http.post('http://localhost:3000/users/updatekyc', body, { headers: headers })
+    return this.http.post('/users/updatekyc', body, { headers: headers })
       // .map(res => res.json());
   }
   verifykyc(form) {
@@ -68,7 +68,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/verifykyc', form, { headers: headers })
+    return this.http.post('/users/verifykyc', form, { headers: headers })
       // .map(res => res.json());
   }
   changeRole(form) {
@@ -78,7 +78,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/changeroles', form, { headers: headers })
+    return this.http.post('/users/changeroles', form, { headers: headers })
       // .map(res => res.json());
   }
   getProfile() {
@@ -88,7 +88,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/profile', { headers: headers })
+    return this.http.get('/users/profile', { headers: headers })
       // .map(res => res.json());
   }
   getReferal() {
@@ -98,7 +98,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/getreferal', { headers: headers })
+    return this.http.get('/users/getreferal', { headers: headers })
       // .map(res => res.json());
   }
   adminKyc() {
@@ -108,7 +108,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/verifykyc', { headers: headers })
+    return this.http.get('/users/verifykyc', { headers: headers })
       // .map(res => res.json());
   }
 
@@ -137,7 +137,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/listroles', { headers: headers })
+    return this.http.get('/users/listroles', { headers: headers })
     .map(result => result);
   }
   getUserListKyc(){
@@ -147,7 +147,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/listkyc', { headers: headers })
+    return this.http.get('/users/listkyc', { headers: headers })
       // .map(res => res.json());
   }
 
@@ -157,7 +157,7 @@ export class AuthService {
     });
     this.loadToken();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/get-kyc', email ,{ headers: headers })
+    return this.http.post('/users/get-kyc', email ,{ headers: headers })
       // .map(res => res.json());
   }
   resetPasswor(form){
@@ -165,7 +165,7 @@ export class AuthService {
       'Authorization' : this.authToken
     });
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/changepassword', form, { headers: headers })
+    return this.http.post('/users/changepassword', form, { headers: headers })
       // .map(res => res.json());
   }
   ForgetResetPass(form){
@@ -173,7 +173,7 @@ export class AuthService {
       'Authorization' : this.authToken
     });;
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/resetpassword', form, { headers: headers })
+    return this.http.post('/users/resetpassword', form, { headers: headers })
       // .map(res => res.json());
   }
 
@@ -194,7 +194,7 @@ export class AuthService {
     this.loadToken();
     let headers = new HttpHeaders({       'Authorization' : this.authToken     });
 
-    return this.http.post('http://localhost:3000/users/sign-contract',type, { headers: headers })
+    return this.http.post('/users/sign-contract',type, { headers: headers })
     // .map(result => result);
   }
 
@@ -203,7 +203,7 @@ export class AuthService {
     this.loadToken();
     let headers = new HttpHeaders({       'Authorization' : this.authToken     });
 
-    return this.http.post('http://localhost:3000/users/enable',email, { headers: headers })
+    return this.http.post('/users/enable',email, { headers: headers })
   }
   deactiveUser(email){
 
@@ -211,6 +211,6 @@ export class AuthService {
     this.loadToken();
     let headers = new HttpHeaders({       'Authorization' : this.authToken     });
 
-    return this.http.post('http://localhost:3000/users/disable',email, { headers: headers })
+    return this.http.post('/users/disable',email, { headers: headers })
   }
 }

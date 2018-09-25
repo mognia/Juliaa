@@ -16,7 +16,7 @@ export class RpcService {
     
     let headers = new HttpHeaders({       'Authorization' : this.authToken     });
     this.loadToken();
-    return this.http.post('http://localhost:3000/rpc/get-price',type, { headers: headers })
+    return this.http.post('/rpc/get-price',type, { headers: headers })
     .map(result => result);
   }
 }

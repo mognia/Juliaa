@@ -24,7 +24,6 @@ import { BackTopComponent } from '../theme/components/back-top/back-top.componen
 import { FullScreenComponent } from '../theme/components/fullscreen/fullscreen.component';
 
 
-import { UserMenuComponent } from '../theme/components/user-menu/user-menu.component';
 
 import {MatRadioModule} from '@angular/material/radio';
 
@@ -71,7 +70,7 @@ import { UsersListComponent } from './users-list/users-list.component';
     FullScreenComponent,
 
 
-    UserMenuComponent,
+
  
 
 
